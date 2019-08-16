@@ -33,8 +33,7 @@ a {
     z-index: -2;
     opacity: 0.4;
     }
-/*
-body {
-    background-image: url('../../assets/images/background.png')
-}
-*/
+    
+    nav {
+        font-size: small;
+    }

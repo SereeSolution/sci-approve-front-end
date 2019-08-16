@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { displayRequestList } from 'src/app/_models/display.model';
+import { ApiService } from 'src/app/shared/services/api.service';
+import { Request } from 'src/app/_models/request.model';
 
 const DATA : displayRequestList[] = [
   {request_code : 1, request_date: '2019-07-20', request_topic: 'ขออนุมัตไปราชการ', request_to: 'คณบดี', request_emp: 'อ.ทดสอบ', dep_name: 'สาขาวิชาคณิตศาสตร์', status: 'คณบดีอนุมัติ'},
@@ -31,16 +33,34 @@ export class ListComponent implements OnInit {
 ];
 
 rowData : displayRequestList[]=[];
+requestData : Request[]=[];
 
-  constructor() { }
+  constructor(
+    private ApiService : ApiService
+  ) { }
 
   ngOnInit() {
-    this.initMockData();
+    this.initMockData();  
+    this.initData();
+    
   }
 
   initMockData() {
     this.rowData = DATA;
   }
+
+  initData() {
+    this.ApiService.getRequests()
+    .subscribe(
+      (res)=>{
+        this.requestData = res;
+        console.log(res);
+      }
+    );
+    console.log(this.requestData);
+  }
+
+
   onRowClicked(event: any) {
     console.log('event - on row click \n =>', event);
     alert('event - on row click \n => ID : '+ event['data'].request_code + ' Topic : ' + event['data'].request_topic);

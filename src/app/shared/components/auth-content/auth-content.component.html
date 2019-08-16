@@ -1,4 +1,12 @@
-<app-nav-bar></app-nav-bar>
+<!-- <app-nav-bar></app-nav-bar> -->
 <main class="app-content">
-        <ng-content></ng-content>
-    </main>
+    <div class="row">
+        <div class="col-sm-12 col-md-10">
+            <ng-content></ng-content>
+        </div>
+        <div class="col-sm-12 col-md-2">
+            <sidebar></sidebar>
+        </div>
+    </div>
+</main>
+<footer></footer>

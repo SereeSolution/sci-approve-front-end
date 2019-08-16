@@ -3,11 +3,16 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AuthContentComponent } from './components/auth-content/auth-content.component';
 import { RouterModule, RouterLinkActive } from '@angular/router';
+import { ApiService } from './services/api.service';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     NavBarComponent,
-    AuthContentComponent
+    AuthContentComponent,
+    SidebarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +23,7 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
     AuthContentComponent
   ],
   providers: [
-    
+    ApiService
   ]
 })
 export class SharedModule { }

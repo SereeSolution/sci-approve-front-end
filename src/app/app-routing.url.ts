@@ -1,5 +1,7 @@
 export const AppURL =
 {
     Login : 'login',
-    Approve : 'approve'
+    Approve : 'approve',
+    Approval : 'approval',
+    Staff : 'staff',
 };
