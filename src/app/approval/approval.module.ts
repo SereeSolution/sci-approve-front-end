@@ -10,7 +10,13 @@ import { ApprovalNavComponent } from './approval-nav/approval-nav.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [ApprovalDashboardComponent, ApprovalRequestApproveComponent, ApprovalRequestCommentComponent, ApprovalRequestStatComponent, ApprovalNavComponent],
+  declarations: [
+    ApprovalDashboardComponent, 
+    ApprovalRequestApproveComponent, 
+    ApprovalRequestCommentComponent, 
+    ApprovalRequestStatComponent, 
+    ApprovalNavComponent
+  ],
   imports: [
     CommonModule,
     ApprovalRoutingModule,

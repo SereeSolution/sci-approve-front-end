@@ -37,3 +37,9 @@ a {
     nav {
         font-size: small;
     }
+
+    @media (min-width: 576px) { 
+        .card-header > .title-page {
+             font-size: 1.25remm !important;
+         }
+      }

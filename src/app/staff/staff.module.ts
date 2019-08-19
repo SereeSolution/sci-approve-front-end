@@ -9,13 +9,22 @@ import { StaffCreateRequestComponent } from './staff-create-request/staff-create
 import { StaffRequestFormComponent } from './staff-request-form/staff-request-form.component';
 import { StaffNavComponent } from './staff-nav/staff-nav.component';
 import { SharedModule } from '../shared/shared.module';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
-  declarations: [StaffDashboardComponent, StaffRequestStatusComponent, StaffRequestStatComponent, StaffCreateRequestComponent, StaffRequestFormComponent, StaffNavComponent],
+  declarations: [
+    StaffDashboardComponent, 
+    StaffRequestStatusComponent, 
+    StaffRequestStatComponent, 
+    StaffCreateRequestComponent, 
+    StaffRequestFormComponent, 
+    StaffNavComponent
+  ],
   imports: [
     CommonModule,
     StaffRoutingModule,
-    SharedModule
+    SharedModule,
+    AgGridModule.withComponents(null)
   ]
 })
 export class StaffModule { }

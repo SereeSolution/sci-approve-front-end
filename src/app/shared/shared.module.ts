@@ -6,13 +6,15 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
 import { ApiService } from './services/api.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
     NavBarComponent,
     AuthContentComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   exports: [
     NavBarComponent,
-    AuthContentComponent
+    AuthContentComponent,
+    ProfileComponent
   ],
   providers: [
     ApiService
