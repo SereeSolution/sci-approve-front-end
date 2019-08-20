@@ -1,5 +1,12 @@
-.profile{
-    background-color: brown;
-    width: 100%;
-    color: white;
+.row{
+    background-color: #a52a2a;
+}
+h3 {
+    color: #FFF;
+}
+.form-group label{
+    color: #FFF;
+    font-size: .85em;
+    line-height: 1.3em;
+    padding: 0 0 0 15px;
 }

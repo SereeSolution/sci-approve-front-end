@@ -1,0 +1,10 @@
+ul{
+    margin-top: auto;
+}
+.nav-item a{
+    font-weight: 1000;
+    font-size: initial;
+    text-transform: uppercase;
+    letter-spacing: .015rem;
+    color: #020202;
+}
