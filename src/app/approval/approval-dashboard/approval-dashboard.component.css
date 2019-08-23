@@ -1,0 +1,22 @@
+h5{
+    margin-top: 2rem;
+}
+
+th{
+    text-align: center;
+}
+td{
+    text-align: center;
+}
+
+th.type-name {
+   text-align: left;
+}
+
+th.department-name{
+    text-align: left;
+}
+
+td.department-name{
+    text-align: left;
+}
