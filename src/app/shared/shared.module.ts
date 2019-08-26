@@ -23,7 +23,9 @@ import { ProfileComponent } from './components/profile/profile.component';
   exports: [
     NavBarComponent,
     AuthContentComponent,
-    ProfileComponent
+    ProfileComponent,
+    FooterComponent,
+    SidebarComponent
   ],
   providers: [
     ApiService

@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     this.login(this.data);
     //this.authen.login(this.data);
     
-    this.router.navigate(['/approve']);    
+    this.router.navigate(['/staff']);    
   }
 
   login(data: loginParam) {

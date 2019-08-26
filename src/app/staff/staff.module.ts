@@ -10,6 +10,7 @@ import { StaffRequestFormComponent } from './staff-request-form/staff-request-fo
 import { StaffNavComponent } from './staff-nav/staff-nav.component';
 import { SharedModule } from '../shared/shared.module';
 import { AgGridModule } from 'ag-grid-angular';
+import { StaffLayoutComponent } from './staff-layout/staff-layout.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AgGridModule } from 'ag-grid-angular';
     StaffRequestStatComponent, 
     StaffCreateRequestComponent, 
     StaffRequestFormComponent, 
-    StaffNavComponent
+    StaffNavComponent,
+    StaffLayoutComponent
   ],
   imports: [
     CommonModule,

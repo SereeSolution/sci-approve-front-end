@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./staff-nav.component.css']
 })
 export class StaffNavComponent implements OnInit {
-
+  navbarOpen = false;
+  
   constructor() { }
 
   ngOnInit() {
-  }
+  }  
 
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
 }
