@@ -17,3 +17,13 @@ td{
 th.type-name{
    text-align: left;
 }
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}

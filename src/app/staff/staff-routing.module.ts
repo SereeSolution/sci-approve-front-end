@@ -6,6 +6,7 @@ import { StaffRequestStatusComponent } from './staff-request-status/staff-reques
 
 const routes: Routes = [
   { path: '', component: StaffDashboardComponent },
+  { path: 'dashboard', component: StaffDashboardComponent },
   { path: 'requeststat', component: StaffRequestStatComponent },
   { path: 'requeststatus', component: StaffRequestStatusComponent }
 ];

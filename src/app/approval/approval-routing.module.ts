@@ -6,6 +6,7 @@ import { ApprovalRequestStatComponent } from './approval-request-stat/approval-r
 
 const routes: Routes = [
   { path: '', component: ApprovalDashboardComponent },
+  { path: 'dashboard', component: ApprovalDashboardComponent },
   { path: 'requestapprove', component: ApprovalRequestApproveComponent },
   { path: 'requeststat', component: ApprovalRequestStatComponent }
 ];

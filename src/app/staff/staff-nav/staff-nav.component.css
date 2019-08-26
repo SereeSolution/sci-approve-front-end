@@ -1,0 +1,16 @@
+ul{
+    margin-top: auto;
+}
+
+.nav-item a{
+    font-weight: 1000;
+    font-size: initial;
+    text-transform: uppercase;
+    letter-spacing: .015rem;
+    color: #020202;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    color: white;
+    background-color: #A52A2A;
+}
