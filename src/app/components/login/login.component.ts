@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     console.log('Form submit : ', this.loginForm.value );
     //this.data.UserName = this.loginForm['email'];
     //this.data.PassWord = this.loginForm['password'];
-    this.login(this.data);
+    //this.login(this.data);
     //this.authen.login(this.data);
     
     this.router.navigate(['/staff']);    
