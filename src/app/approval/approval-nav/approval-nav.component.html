@@ -1,4 +1,40 @@
-<div class="col-lg-12 col-12 p-0 d-flex fixed-top flex-row" style="min-height:100px;background:white;">
+<div class="row">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="../../assets/images/logo_sci_th.svg" />
+      {{title}}
+    </a>
+
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+      <ul class="nav navbar-nav ml-auto navbar-right">
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/approval/dashboard" routerLinkActive="active">หน้าหลัก <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/approval/requestapprove" routerLinkActive="active">คำขอขออนุมัติรอพิจารณา</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/approval/requeststat" routerLinkActive="active">ประวัติคำขอขออนุมัติ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/approve/detail" routerLinkActive="active">ขออนุมัติไปราชการ (ส่วนตัว)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/approve/list" routerLinkActive="active">ประวัติคำขอขออนุมัติ (ส่วนตัว)</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<!-- <div class="col-lg-12 col-12 p-0 d-flex fixed-top flex-row" style="min-height:100px;background:white;">
   <nav class="navbar navbar-expand-md fixed-top bg-white">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -33,4 +69,4 @@
 
     </div>
   </nav>
-</div>
+</div> -->

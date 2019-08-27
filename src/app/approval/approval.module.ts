@@ -8,6 +8,7 @@ import { ApprovalRequestCommentComponent } from './approval-request-comment/appr
 import { ApprovalRequestStatComponent } from './approval-request-stat/approval-request-stat.component';
 import { ApprovalNavComponent } from './approval-nav/approval-nav.component';
 import { SharedModule } from '../shared/shared.module';
+import { ApprovalLayoutComponent } from './approval-layout/approval-layout.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { SharedModule } from '../shared/shared.module';
     ApprovalRequestApproveComponent, 
     ApprovalRequestCommentComponent, 
     ApprovalRequestStatComponent, 
-    ApprovalNavComponent
+    ApprovalNavComponent, ApprovalLayoutComponent
   ],
   imports: [
     CommonModule,
