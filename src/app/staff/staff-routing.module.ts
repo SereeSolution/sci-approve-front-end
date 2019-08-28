@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { StaffDashboardComponent } from './staff-dashboard/staff-dashboard.component';
 import { StaffRequestStatComponent } from './staff-request-stat/staff-request-stat.component';
 import { StaffRequestStatusComponent } from './staff-request-status/staff-request-status.component';
+import { StaffRequestFormComponent } from './staff-request-form/staff-request-form.component';
 
 const routes: Routes = [
   { path: '', component: StaffDashboardComponent },
   { path: 'dashboard', component: StaffDashboardComponent },
   { path: 'requeststat', component: StaffRequestStatComponent },
-  { path: 'requeststatus', component: StaffRequestStatusComponent }
+  { path: 'requeststatus', component: StaffRequestStatusComponent },
+  { path: 'requestform', component: StaffRequestFormComponent }
 ];
 
 @NgModule({

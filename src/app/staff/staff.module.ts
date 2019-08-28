@@ -26,7 +26,7 @@ import { StaffLayoutComponent } from './staff-layout/staff-layout.component';
     CommonModule,
     StaffRoutingModule,
     SharedModule,
-    AgGridModule.withComponents(null)
+    AgGridModule.withComponents([])
   ]
 })
 export class StaffModule { }
