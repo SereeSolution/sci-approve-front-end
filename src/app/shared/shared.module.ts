@@ -7,6 +7,7 @@ import { ApiService } from './services/api.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { TuAuthenService } from './services/tu-authen.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     SidebarComponent
   ],
   providers: [
-    ApiService
+    ApiService,
+    TuAuthenService    
   ]
 })
 export class SharedModule { }

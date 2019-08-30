@@ -35,6 +35,13 @@ a {
   opacity: 0.4;
 }
 
+.bg-profile {
+  background-image: url("./assets/images/bg_profile.png");
+  background-repeat: no-repeat;  
+  background-position: right bottom;
+  background-size: contain;
+}
+
 nav {
   font-size: small;
   font-weight: 100;

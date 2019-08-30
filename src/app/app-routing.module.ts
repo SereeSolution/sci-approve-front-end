@@ -6,7 +6,6 @@ import { AppURL } from './app-routing.url';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },  
-  { path: 'approve', loadChildren: './approve/approve.module#ApproveModule' },
   { path: 'approval', loadChildren: './approval/approval.module#ApprovalModule' },
   { path: 'staff', loadChildren: './staff/staff.module#StaffModule' },
   { path: '**', component: NotfoundComponent }  

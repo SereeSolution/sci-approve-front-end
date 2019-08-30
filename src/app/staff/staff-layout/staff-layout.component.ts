@@ -5,8 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './staff-layout.component.html',
   styleUrls: ['./staff-layout.component.css']
 })
-export class StaffLayoutComponent implements OnInit {
-
+export class StaffLayoutComponent implements OnInit {  
   constructor() { }
 
   ngOnInit() {
