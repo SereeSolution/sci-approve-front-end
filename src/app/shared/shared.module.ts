@@ -12,6 +12,7 @@ import { FormLectureComponent } from './components/form-lecture/form-lecture.com
 import { FormPresentationComponent } from './components/form-presentation/form-presentation.component';
 import { FormStudyTripComponent } from './components/form-study-trip/form-study-trip.component';
 import { FormSupervisionComponent } from './components/form-supervision/form-supervision.component';
+import { NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [

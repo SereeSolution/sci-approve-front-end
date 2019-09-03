@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Province } from 'src/app/shared/commonSelect';
 
 @Component({
   selector: 'form-supervision',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-supervision.component.css']
 })
 export class FormSupervisionComponent implements OnInit {
-
+  Province = Province;
+  
   constructor() { }
 
   ngOnInit() {

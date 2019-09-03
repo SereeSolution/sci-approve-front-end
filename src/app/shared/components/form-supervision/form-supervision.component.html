@@ -22,7 +22,7 @@
                         <div class="form-group row">
                             <label class="col-4 col-form-label text-right">ลงวันที่</label>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="เลขที่หนังสือ">
+                                <input type="date" class="form-control" placeholder="ลงวันที่">
                             </div>
                         </div>
                     </div>
@@ -65,9 +65,8 @@
                                     <label class="col-sm-4 col-md-2 col-form-label">จังหวัด</label>
                                     <div class="col col-sm-8 col-md-4">
                                         <select class="form-control">
-                                            <option>ปทุมธาณี</option>
-                                            <option>กรุงเทพมหานครฯ</option>
-                                            <option>อื่นๆ</option>
+                                            <option >----- กรุณาระบุจังหวัด -----</option>
+                                            <option *ngFor="let pv of Province" value="pv.value">{{pv.display}}</option>
                                         </select>
                                     </div>
                                     <label class="col-sm-4 col-md-1 col-form-label">โทรศัพท์</label>
@@ -137,11 +136,11 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-md-2 col-form-label">ระหว่างวันที่</label>
                                             <div class="col col-sm-8 col-md-3">
-                                                <input type="text" class="form-control" placeholder="วันที่">
+                                                <input type="data" class="form-control" placeholder="วันที่">
                                             </div>
                                             <label class="col-sm-4 col-md-1 col-form-label">ถึงวันที่</label>
                                             <div class="col col-sm-8 col-md-3">
-                                                <input type="text" class="form-control" placeholder="วันที่">
+                                                <input type="date" class="form-control" placeholder="วันที่">
                                             </div>
                                         </div>
                                         <div class="form-group row">
