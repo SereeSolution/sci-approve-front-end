@@ -8,6 +8,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TuAuthenService } from './services/tu-authen.service';
+import { FormLectureComponent } from './components/form-lecture/form-lecture.component';
+import { FormPresentationComponent } from './components/form-presentation/form-presentation.component';
+import { FormStudyTripComponent } from './components/form-study-trip/form-study-trip.component';
+import { FormSupervisionComponent } from './components/form-supervision/form-supervision.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import { TuAuthenService } from './services/tu-authen.service';
     AuthContentComponent,
     SidebarComponent,
     FooterComponent,
-    ProfileComponent
+    ProfileComponent,
+    FormLectureComponent,
+    FormPresentationComponent,
+    FormStudyTripComponent,
+    FormSupervisionComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +34,11 @@ import { TuAuthenService } from './services/tu-authen.service';
     AuthContentComponent,
     ProfileComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    FormLectureComponent,
+    FormPresentationComponent,
+    FormStudyTripComponent,
+    FormSupervisionComponent,
   ],
   providers: [
     ApiService,
