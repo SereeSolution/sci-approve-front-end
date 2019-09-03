@@ -12,7 +12,7 @@ import { FormLectureComponent } from './components/form-lecture/form-lecture.com
 import { FormPresentationComponent } from './components/form-presentation/form-presentation.component';
 import { FormStudyTripComponent } from './components/form-study-trip/form-study-trip.component';
 import { FormSupervisionComponent } from './components/form-supervision/form-supervision.component';
-import { NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    BsDatepickerModule.forRoot() 
   ],
   exports: [
     NavBarComponent,
@@ -39,11 +40,11 @@ import { NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
     FormLectureComponent,
     FormPresentationComponent,
     FormStudyTripComponent,
-    FormSupervisionComponent,
+    FormSupervisionComponent
   ],
   providers: [
     ApiService,
-    TuAuthenService    
+    TuAuthenService
   ]
 })
 export class SharedModule { }

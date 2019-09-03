@@ -11,7 +11,8 @@ export class FormLectureComponent implements OnInit {
 
   requestDate: any;
   
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
   }
