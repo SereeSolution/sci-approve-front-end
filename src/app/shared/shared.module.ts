@@ -13,6 +13,8 @@ import { FormPresentationComponent } from './components/form-presentation/form-p
 import { FormStudyTripComponent } from './components/form-study-trip/form-study-trip.component';
 import { FormSupervisionComponent } from './components/form-supervision/form-supervision.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AllRequestFormComponent } from './components/all-request-form/all-request-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,11 +27,13 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     FormPresentationComponent,
     FormStudyTripComponent,
     FormSupervisionComponent,
+    AllRequestFormComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
-    BsDatepickerModule.forRoot() 
+    BsDatepickerModule.forRoot(),
+    FormsModule,
   ],
   exports: [
     NavBarComponent,

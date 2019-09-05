@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'dashboard', component: StaffDashboardComponent },
   { path: 'requeststat', component: StaffRequestStatComponent },
   { path: 'requeststatus', component: StaffRequestStatusComponent },
-  { path: 'requestform', component: StaffRequestFormComponent }
+  { path: 'requestform', component: StaffRequestFormComponent },
+  { path: 'requestform/:form', component: StaffRequestFormComponent }
 ];
 
 @NgModule({

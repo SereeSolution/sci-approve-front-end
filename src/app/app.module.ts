@@ -10,6 +10,9 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TypeaheadModule.forRoot(),
+    ModalModule.forRoot(),
+    ToastrModule.forRoot({      
+    }) // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

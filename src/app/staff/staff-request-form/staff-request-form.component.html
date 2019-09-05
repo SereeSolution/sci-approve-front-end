@@ -1,8 +1,37 @@
 <staff-layout>
     <div class="app_content mt-0 col-10 mx-auto">
-        <div class="container" style="padding-top: 1.5rem;">
-            <form-lecture></form-lecture>
-            <!-- <form-supervision></form-supervision> -->
+        <div class="list-group"  *ngIf="!openForm" >
+                <a [routerLink]="['/staff/requestform','LECTURE']" class="list-group-item">บันทึกคำขออนุมัติไปเป็นวิทยากร</a>
+                <a [routerLink]="['/staff/requestform','SUPERVISION']" class="list-group-item">บันทึกคำขออนุมัติไปนิเทศนักศึกษา</a>
+                <a [routerLink]="['/staff/requestform','PRESENT']" class="list-group-item">บันทึกคำขออนุมัติไปเสนอผลงาน</a>
+                <a [routerLink]="['/staff/requestform','TRIP']" class="list-group-item">บันทึกคำขออนุมัติไปศึกษาดูงาน</a>
+<!--
+            <a (click)="setOpenForm('LECTURE')" class="list-group-item">บันทึกคำขออนุมัติไปเป็นวิทยากร</a>
+            <a (click)="setOpenForm('SUPERVISION')" class="list-group-item">บันทึกคำขออนุมัติไปเสนอผลงาน</a>
+            <a (click)="setOpenForm('PRESENT')" class="list-group-item">บันทึกคำขออนุมัติไปศึกษาดูงาน</a>
+            <a (click)="setOpenForm('TRIP')" class="list-group-item">บันทึกคำขออนุมัติไปนิเทศนักศึกษา</a>
+        -->
         </div>
+
+        <div *ngIf="openForm === 'LECTURE'" class="container" style="padding-top: 1.5rem;">
+            <form-lecture></form-lecture>
+            <!--ฟอร์มไปเป็นวิทยากร-->
+        </div>
+
+        <div *ngIf="openForm === 'SUPERVISION'" class="container" style="padding-top: 1.5rem;">
+            <form-supervision></form-supervision>
+            <!--ฟอร์มไปนิเทศนักศึกษา-->
+        </div>
+
+        <div *ngIf="openForm === 'PRESENT'" class="container" style="padding-top: 1.5rem;">
+            <form-presentation></form-presentation>
+            <!--ฟอร์มไปนำเสนองาน-->
+        </div>
+
+        <div *ngIf="openForm === 'TRIP'" class="container" style="padding-top: 1.5rem;">
+            <form-study-trip></form-study-trip>
+            <!--ฟอร์มไปศึกษาดูงาน-->
+        </div>
+
     </div>
 </staff-layout>

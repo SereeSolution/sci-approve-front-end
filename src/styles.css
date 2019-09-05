@@ -2,6 +2,7 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-balham.css";
 @import url("https://fonts.googleapis.com/css?family=Prompt&display=swap");
+@import '~ngx-toastr/toastr.css';
 
 * {
   color: #636b6f;
@@ -48,8 +49,14 @@ nav {
   font-style: normal;
 }
 
+.modal-dialog{
+  max-width: 1000px !important;
+  width: 1000px !important;
+}
+
 @media (min-width: 576px) {
   .card-header > .title-page {
     font-size: 1.25remm !important;
   }
+
 }
