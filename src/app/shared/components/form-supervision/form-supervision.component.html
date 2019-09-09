@@ -52,13 +52,15 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-md-2 col-form-label">ชื่อหน่วยงาน</label>
                                     <div class="col-sm-8 col-md-10">
-                                        <input type="text" class="form-control" placeholder="หน่วยงานผู้เชิญ">
+                                        <input type="text" class="form-control" placeholder="หน่วยงานผู้เชิญ"
+                                            [(ngModel)]="r.orgName">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-md-2 col-form-label">ที่อยู่</label>
                                     <div class="col-sm-8 col-md-10">
-                                        <input type="text" class="form-control" placeholder="ที่อยู่">
+                                        <input type="text" class="form-control" placeholder="ที่อยู่"
+                                            [(ngModel)]="r.address">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -73,20 +75,20 @@
                                     <label class="col-sm-4 col-md-1 col-form-label">โทรศัพท์</label>
                                     <div class="col col-sm-8 col-md-5">
                                         <input type="text" class="form-control" placeholder="โทรศัพท์"
-                                            [(ngModel)]="r.audience">
+                                            [(ngModel)]="r.tel">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-md-2 col-form-label">ผู้ดูแลนักศึกษา</label>
                                     <div class="col-sm-8 col-md-10">
                                         <input type="text" class="form-control" placeholder="ผู้ดูแลนักศึกษา"
-                                            [(ngModel)]="r.audience">
+                                            [(ngModel)]="r.caretaker">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-md-2 col-form-label">รายชื่อนักศึกษา</label>
                                     <div class="col col-sm-8 col-md-10">
-                                        <textarea class="col col-sm-8 col-md-12" [(ngModel)]="r.audience">
+                                        <textarea class="col col-sm-8 col-md-12" [(ngModel)]="r.studentList">
                                         </textarea>
                                     </div>
                                 </div>
@@ -94,11 +96,11 @@
                                     <label class="col-sm-4 col-md-2 col-form-label">ชันปี</label>
                                     <div class="col col-sm-8 col-md-4">
                                         <input type="text" class="form-control" placeholder="ชันปี"
-                                            [(ngModel)]="r.audience">
+                                            [(ngModel)]="r.studentYear">
                                     </div>
                                     <label class="col-sm-4 col-md-1 col-form-label">สาขาวิชา</label>
                                     <div class="col col-sm-8 col-md-5">
-                                        <select class="form-control" [(ngModel)]="r.audience">
+                                        <select class="form-control" [(ngModel)]="r.studentDepartment">
                                             <option value="เคมี">เคมี</option>
                                             <option value="คอม">คอม</option>
                                             <option value="คณิต">คณิต</option>
@@ -108,7 +110,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-md-2 col-form-label">รายละเอียดเพิ่มเติม</label>
                                     <div class="col col-sm-8 col-md-10">
-                                        <textarea class="col col-sm-8 col-md-12">
+                                        <textarea class="col col-sm-8 col-md-12" [(ngModel)]="r.description">
                                         </textarea>
                                     </div>
                                 </div>

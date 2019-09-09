@@ -53,13 +53,15 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-md-2 col-form-label">หน่วยงานผู้เชิญ</label>
                                     <div class="col-sm-8 col-md-10">
-                                        <input type="text" class="form-control" placeholder="หน่วยงานผู้เชิญ">
+                                        <input type="text" class="form-control" placeholder="หน่วยงานผู้เชิญ"
+                                            [(ngModel)]="r.orgName">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-md-2 col-form-label">ที่อยู่</label>
                                     <div class="col-sm-8 col-md-10">
-                                        <input type="text" class="form-control" placeholder="ที่อยู่">
+                                        <input type="text" class="form-control" placeholder="ที่อยู่"
+                                            [(ngModel)]="r.address">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -67,22 +69,23 @@
                                     <div class="col col-sm-8 col-md-4">
                                         <select class="form-control">
                                             <option>----- กรุณาระบุจังหวัด -----</option>
-                                            <option *ngFor="let pv of Province" value="pv.value">{{pv.display}}</option>
+                                            <option *ngFor="let pv of Province" value="{{pv.value}}">{{pv.display}}
+                                            </option>
                                         </select>
                                     </div>
                                     <label class="col-sm-4 col-md-1 col-form-label">โทรศัพท์</label>
                                     <div class="col col-sm-8 col-md-5">
-                                        <input type="text" class="form-control" placeholder="โทรศัพท์">
+                                        <input type="text" class="form-control" placeholder="โทรศัพท์" [(ngModel)]="r.tel">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-md-2 col-form-label">ผู้ประสานงาน</label>
                                     <div class="col col-sm-8 col-md-5">
-                                        <input type="text" class="form-control" placeholder="ชื่อ-สกุล">
+                                        <input type="text" class="form-control" placeholder="ชื่อ-สกุล" [(ngModel)]="r.coordinator">
                                     </div>
                                     <label class="col-sm-4 col-md-1 col-form-label">โทรศัพท์</label>
                                     <div class="col col-sm-8 col-md-4">
-                                        <input type="text" class="form-control" placeholder="โทรศัพท์">
+                                        <input type="text" class="form-control" placeholder="โทรศัพท์" [(ngModel)]="r.coordinatorTel">
                                     </div>
                                 </div>
                             </div>

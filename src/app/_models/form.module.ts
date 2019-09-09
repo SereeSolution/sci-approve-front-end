@@ -7,7 +7,7 @@ export class RequestApproval {              //-----รายละเอีย�
   topic: string                     // หัวข้อบรรยาย, ชื่อผลงาน
   audience: string                  // กลุ่มผู้เข้าฟัง -- Lecture
   coordinator: string               // ผู้ประสานงาน -- StudyTrip
-  coordinator_tel: string           // เบอร์โทรผู้ประสานงาน -- StudyTrip
+  coordinatorTel: string           // เบอร์โทรผู้ประสานงาน -- StudyTrip
   caretaker: string                 // ผู้ดูแลนักศึกษา -- Supervision
   studentList: string               // รายชื่อนักศึกษา -- Supervision
   studentYear: string               // ชั้นปี -- Supervision
