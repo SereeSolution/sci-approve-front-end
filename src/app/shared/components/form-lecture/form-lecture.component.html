@@ -110,13 +110,13 @@
 
                 <div class="card card-signin my-0">
                     <div class="card-header  rounded-top">
-                        <h5 class="title-page text-secondary">กำหนดการณ์</h5>
+                        <h5 class="title-page text-secondary">กำหนดการ</h5>
                     </div>
                     <div class="card-body">
-                        <!-- Form บันทึกกำหนดการณ์ -->
+                        <!-- Form บันทึกกำหนดการ -->
                         <div class="card card-signin my-0 mb-3" *ngIf="showScheduleForm">
                             <div class="card-header  rounded-top">
-                                <h5 class="title-page text-secondary">บันทึกกำหนดการณ์</h5>
+                                <h5 class="title-page text-secondary">บันทึกกำหนดการ</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -179,12 +179,12 @@
                             <div class="card-header  rounded-top">
                                 <div class="form-group row">
                                     <div class="col">
-                                        <h5 class="title-page text-secondary">รายการกำหนดการณ์</h5>
+                                        <h5 class="title-page text-secondary">รายการกำหนดการ</h5>
                                     </div>
                                     <div class="col">
                                         <button type="submit" class="btn btn-warning btn-sm float-right"
                                             (click)="openModal(template)">
-                                            <i class="fa fa-plus text-danger" aria-hidden="true"></i> เพิ่มกำหนดการณ์
+                                            <i class="fa fa-plus text-danger" aria-hidden="true"></i> เพิ่มกำหนดการ
                                         </button>
                                     </div>
                                 </div>
@@ -193,44 +193,16 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group row">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">ชื่อ-สกุลวิทยากร</th>
-                                                        <th scope="col">สถานที่</th>
-                                                        <th scope="col">จังหวัด</th>
-                                                        <th scope="col">ระหว่างวันที่</th>
-                                                        <th scope="col">ถึงวันที่</th>
-                                                        <th scope="col">จำนวนวัน</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">อ.ทดสอบ1</th>
-                                                        <td>ม.ธรรมศาสตร์ ศูนย์รังสิต</td>
-                                                        <td>ปทุมธาณี</td>
-                                                        <td>2 กันยายน 2562</td>
-                                                        <td>3 กันยายน 2562</td>
-                                                        <td>1</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">อ.ทดสอบ2</th>
-                                                        <td>ม.รังสิต</td>
-                                                        <td>ปทุมธาณี</td>
-                                                        <td>4 กันยายน 2562</td>
-                                                        <td>6 กันยายน 2562</td>
-                                                        <td>2</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">อ.ทดสอบ3</th>
-                                                        <td>ม.ธรรมศาสตร์ ศูนย์รังสิต</td>
-                                                        <td>ปทุมธาณี</td>
-                                                        <td>2 กันยายน 2562</td>
-                                                        <td>6 กันยายน 2562</td>
-                                                        <td>5</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            <ag-grid-angular style="width: 100%; height: 500px; font-size: medium;"
+                                                        class="ag-theme-balham" [rowData]="rowData"
+                                                        [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"                                                        
+                                                        (rowClicked)="onRowClicked($event)" 
+                                                        >
+                                                </ag-grid-angular>
+                                                <!--
+                                                    (gridReady)="onGridReady($event)"
+                                                    (firstDataRendered)="onFirstDataRendered($event)"
+                                                  -->
                                         </div>
                                     </div>
                                 </div>
@@ -258,74 +230,10 @@
 </div>
 
 
-<ng-template #template class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
-
+<ng-template #template let-modal class="modal fade" >
     <div class="modal-content">
         <div class="modal-body px-0 py-0">
-            <!-- Form บันทึกกำหนดการณ์ -->
-            <div class="card card-signin my-0">
-                <div class="card-header  rounded-top">
-                    <h5 class="title-page text-secondary">บันทึกกำหนดการณ์</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-sm-4 col-md-2 col-form-label">ชื่อ-สกุลวิทยากร</label>
-                                <div class="col-sm-6 col-md-8">
-                                    <input type="text" class="form-control" placeholder="ชื่อ-สกุล">
-                                </div>
-                                <button type="submit" class="btn btn-primary">ค้นหา</button>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 col-md-2 col-form-label">สถานที่บรรยาย</label>
-                                <div class="col col-sm-8 col-md-6">
-                                    <input type="text" class="form-control" placeholder="สถานที่">
-                                </div>
-                                <label class="col-sm-4 col-md-1 col-form-label">จังหวัด</label>
-                                <div class="col col-sm-8 col-md-3">
-                                    <select class="form-control">
-                                        <option>----- กรุณาระบุจังหวัด -----</option>
-                                        <option *ngFor="let pv of Province" value="pv.value">{{pv.display}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 col-md-2 col-form-label">ระหว่างวันที่</label>
-                                <div class="col col-sm-8 col-md-3">
-                                    <input type="text" class="form-control" placeholder="วันที่" bsDatepicker>
-                                </div>
-                                <label class="col-sm-4 col-md-1 col-form-label">ถึงวันที่</label>
-                                <div class="col col-sm-8 col-md-3">
-                                    <input type="text" class="form-control" placeholder="วันที่" bsDatepicker>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 col-md-2 col-form-label">รวมจำนวน</label>
-                                <div class="col-sm-8 col-md-3">
-                                    <input type="text" class="form-control" placeholder="จำนวน">
-                                </div>
-                                <label class="col-sm-4 col-md-2 col-form-label">วัน</label>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-2 col-md-2 offset-md-10 offset-sm-10">
-                                    <div class="form-group row">
-                                        <button type="submit" class="btn btn-primary" (click)="modalRef.hide()">
-                                            <!-- (click)="saveScheduleForm()" -->
-                                            <i class="fa fa-floppy-o text-light" aria-hidden="true"></i> บันทึก
-                                        </button>
-                                        <button type="submit" class="btn btn-primary" (click)="modalRef.hide()">
-                                            <!-- (click)="saveScheduleForm()" -->
-                                            <i class="fa fa-floppy-o text-light" aria-hidden="true"></i> บันทึก
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <schedule-form [scheduleItem]="scheduleItem"></schedule-form>
         </div>
     </div>
 </ng-template>

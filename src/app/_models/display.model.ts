@@ -26,3 +26,15 @@ export class displayDashboardList {
 export class displayPendingList {
     
 }
+
+export class iScheduleList {
+    sid: number;   /* รหัสกำหนดการณ์ */
+    empID: number;     /* รหัสบุคลากร */
+    empName: string;   /* ชื่อ สกุล */
+    orgName: string;   /* ชื่อสถานที่ / หน่วยงาน */
+    provinceID: number;  /* รหัสจังหวัด */
+    provinceName: string;    /* ชื่อจังหวัด */
+    startDate: string;     /* วันที่เริ่มต้น */
+    endDate: string;       /* ถึงวันที่ */
+    numDate: number;       /* จำนวนวัน */
+  }

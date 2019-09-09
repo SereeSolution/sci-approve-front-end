@@ -11,7 +11,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -33,7 +33,9 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({      
     }) // ToastrModule added
   ],
-  providers: [],
+  providers: [
+    BsModalRef
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

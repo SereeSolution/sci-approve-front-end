@@ -1,0 +1,70 @@
+<!-- Form บันทึกกำหนดการ -->
+<div class="card card-signin my-0">
+    <div class="card-header  rounded-top">
+        <h5 class="title-page text-secondary">บันทึกกำหนดการ</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-md-2 col-form-label">ชื่อ-สกุลวิทยากร</label>
+                    <div class="col-sm-6 col-md-8">
+                        <input type="text" class="form-control" placeholder="ชื่อ-สกุล"
+                            [(ngModel)]="scheduleItem.empName">
+                    </div>
+                    <button type="button"  (click)="saveScheduleForm()" class="btn btn-warning">ค้นหา</button>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-md-2 col-form-label">สถานที่บรรยาย</label>
+                    <div class="col col-sm-8 col-md-6">
+                        <input type="text" class="form-control" placeholder="สถานที่"
+                            [(ngModel)]="scheduleItem.orgName">
+                    </div>
+                    <label class="col-sm-4 col-md-1 col-form-label">จังหวัด</label>
+                    <div class="col col-sm-8 col-md-3">
+                        <select class="form-control" [(ngModel)]="scheduleItem.provinceID">
+
+                            {{scheduleItem.provinceID}} {{scheduleItem.provinceName}}
+                            <option>----- กรุณาระบุจังหวัด -----</option>
+                            <option *ngFor="let pv of Province"   [ngValue]="pv.value" >{{pv.display}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-md-2 col-form-label">ระหว่างวันที่</label>
+                    <div class="col col-sm-8 col-md-3">
+                        <input type="text" class="form-control" placeholder="วันที่" bsDatepicker
+                            [(ngModel)]="scheduleItem.startDate">
+                    </div>
+                    <label class="col-sm-4 col-md-1 col-form-label">ถึงวันที่</label>
+                    <div class="col col-sm-8 col-md-3">
+                        <input type="text" class="form-control" placeholder="วันที่" bsDatepicker
+                            [(ngModel)]="scheduleItem.endDate">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-md-2 col-form-label">รวมจำนวน</label>
+                    <div class="col-sm-8 col-md-3">
+                        <input type="text" class="form-control" placeholder="จำนวน" [(ngModel)]="scheduleItem.numDate">
+                    </div>
+                    <label class="col-sm-4 col-md-2 col-form-label">วัน</label>
+                </div>
+
+                <div class="form-group row float-right">
+                    <!--
+                    <button type="button" class="btn btn-primary mr-2" (click)="saveScheduleForm()">
+                        <i class="fa fa-floppy-o text-light" aria-hidden="true"></i> บันทึก
+                    </button>
+                -->
+                    <span class="btn btn-primary mr-2 rounded"  (ngClick)="saveScheduleForm()">
+                        <i class="fa fa-floppy-o text-light" aria-hidden="true"></i> บันทึก
+                    </span>
+                    <button type="button" class=" btn btn-warning" (click)="onClose()">
+                        <i class="fa fa-floppy-o text-light" aria-hidden="true"></i> ยกเลิก
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,6 +15,9 @@ import { FormSupervisionComponent } from './components/form-supervision/form-sup
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AllRequestFormComponent } from './components/all-request-form/all-request-form.component';
 import { FormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular';
+import { ScheduleFormComponent } from './components/schedule-form/schedule-form.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -28,12 +31,15 @@ import { FormsModule } from '@angular/forms';
     FormStudyTripComponent,
     FormSupervisionComponent,
     AllRequestFormComponent,
+    ScheduleFormComponent,
+
   ],
   imports: [
     CommonModule,
     RouterModule,
-    BsDatepickerModule.forRoot(),
+    BsDatepickerModule.forRoot(),    
     FormsModule,
+    AgGridModule.withComponents([])
   ],
   exports: [
     NavBarComponent,
@@ -49,6 +55,9 @@ import { FormsModule } from '@angular/forms';
   providers: [
     ApiService,
     TuAuthenService
+  ],
+  entryComponents:[
+    ScheduleFormComponent
   ]
 })
 export class SharedModule { }
