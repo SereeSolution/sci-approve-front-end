@@ -183,7 +183,7 @@
                                     </div>
                                     <div class="col">
                                         <button type="submit" class="btn btn-warning btn-sm float-right"
-                                            (click)="openModal(template)">
+                                            (click)="callAddNewRow()">
                                             <i class="fa fa-plus text-danger" aria-hidden="true"></i> เพิ่มกำหนดการ
                                         </button>
                                     </div>
@@ -197,6 +197,7 @@
                                                         class="ag-theme-balham" [rowData]="rowData"
                                                         [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"                                                        
                                                         (rowClicked)="onRowClicked($event)" 
+                                                        (gridReady)="onGridReady($event)"
                                                         >
                                                 </ag-grid-angular>
                                                 <!--

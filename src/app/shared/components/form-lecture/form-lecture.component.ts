@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Province } from 'src/app/shared/commonSelect';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { RequestApproval, Schedule } from 'src/app/_models/form.module';
+import { RequestApproval } from 'src/app/_models/form.module';
 import { ToastrService } from 'ngx-toastr';
-import { iScheduleList } from 'src/app/_models/display.model';
-import { ScheduleFormComponent } from '../schedule-form/schedule-form.component';
+import { iScheduleList, iScheduleListAction } from 'src/app/_models/schedule.model';
+
+
 
 const ScheduleList: iScheduleList[] = [
   { sid: 1, empID: 1, empName: 'รศ.ดร.อรุณศรี  สุขเกษม', orgName: 'สถาปันเพิ่มผลผลิต', provinceID: 10, provinceName: 'กรุงเทพมหานคร', startDate: '01/20/2560', endDate: '01/20/2560', numDate: 1 },
@@ -34,7 +35,7 @@ const emp: Employee[] = [
 })
 
 export class FormLectureComponent implements OnInit {
-  @ViewChild('template' , {static: false}) templateRef: TemplateRef<any>;
+  @ViewChild('template', { static: false }) templateRef: TemplateRef<any>;
   //@ViewChild('template') templateRef: TemplateRef<any>;  
   Province = Province;
   requestDate: any;
@@ -57,11 +58,11 @@ export class FormLectureComponent implements OnInit {
     { headerName: 'ถึงวันที่', field: 'endDate' },
     { headerName: 'จำนวน (วัน)', field: 'numDate' },
   ];
-  private gridApi;
-  private gridColumnApi;
-  private defaultColDef;
+  public gridApi;
+  public gridColumnApi;
+  public defaultColDef;
   rowData: iScheduleList[] = [];
-  scheduleItem : iScheduleList;
+  scheduleItem: iScheduleListAction;
 
   constructor(
     private modalService: BsModalService,
@@ -82,12 +83,20 @@ export class FormLectureComponent implements OnInit {
     */
   }
 
+  callAddNewRow() {
+    this.scheduleItem = new iScheduleListAction();
+    this.scheduleItem.action = 'ADD';  
+   // this.scheduleItem.setDefaultData();  
+    this.openModal(this.templateRef);    
+  }
+
   onRowClicked($event) {
     //this.toastr.success(data);    
-    this.scheduleItem = new iScheduleList();
-    this.scheduleItem = $event['data'];
-    this.openModal(this.templateRef);    
-    console.log('OUTPUT ', this.scheduleItem);
+    this.scheduleItem = new iScheduleListAction();
+    this.scheduleItem.scheduleItem  = $event['data'];
+    this.scheduleItem.action = 'EDIT';
+    this.openModal(this.templateRef);
+    console.log('OUTPUT ', this.scheduleItem.scheduleItem);    
   }
 
 
@@ -105,12 +114,40 @@ export class FormLectureComponent implements OnInit {
     });
   }
 
-  onSendBack( item : iScheduleList ) {
-    console.log('onSendBack : ');
-    console.log(item);
+  onSendBack(item: iScheduleListAction) {    
+if (item.action=='EDIT') {
+    let res = this.gridApi.updateRowData({ update: [item.scheduleItem] });
+    this.toastr.success('ปรับปรุงข้อมูลเรียบร้อย !');
+} else if (item.action == 'ADD') {
+  let res = this.gridApi.updateRowData({ add: [item.scheduleItem] });
+  this.toastr.success('เพิ่มข้อมูลเรียบร้อย !');
+}
+
+    /*for (let index of ScheduleList) {
+      let itemSid = index.sid;
+      console.log(index.empName);
+
+      if (itemSid == item.sid) {
+        
+        let res = this.gridApi.updateRowData({ update: [item] });
+        console.log(res);
+      }
+      else {
+        console.log('Not Update');
+      }
+    };
+*/
+    //this.gridApi.updateRowData({ update:[item]});
+  }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
   }
 
 }
+
+
 
 
 export class Employee {
