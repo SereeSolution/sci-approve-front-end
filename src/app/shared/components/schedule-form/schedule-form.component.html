@@ -10,7 +10,7 @@
                     <label class="col-sm-4 col-md-2 col-form-label">ชื่อ-สกุลวิทยากร</label>
                     <div class="col-sm-6 col-md-8">
                         <input type="text" class="form-control" placeholder="ชื่อ-สกุล"
-                            [(ngModel)]="scheduleItem.empName">
+                            [(ngModel)]="item.scheduleItem.empName">
                     </div>
                     <button type="button"  (click)="saveScheduleForm()" class="btn btn-warning">ค้นหา</button>
                 </div>
@@ -18,15 +18,13 @@
                     <label class="col-sm-4 col-md-2 col-form-label">สถานที่บรรยาย</label>
                     <div class="col col-sm-8 col-md-6">
                         <input type="text" class="form-control" placeholder="สถานที่"
-                            [(ngModel)]="scheduleItem.orgName">
+                            [(ngModel)]="item.scheduleItem.orgName">
                     </div>
                     <label class="col-sm-4 col-md-1 col-form-label">จังหวัด</label>
                     <div class="col col-sm-8 col-md-3">
-                        <select class="form-control" [(ngModel)]="scheduleItem.provinceID">
-
-                            {{scheduleItem.provinceID}} {{scheduleItem.provinceName}}
+                        <select class="form-control" [(ngModel)]="item.scheduleItem.provinceID">
                             <option>----- กรุณาระบุจังหวัด -----</option>
-                            <option *ngFor="let pv of Province"   [ngValue]="pv.value" >{{pv.display}}
+                            <option *ngFor="let pv of Province" value="{{pv.value}}">{{pv.display}}
                             </option>
                         </select>
                     </div>
@@ -35,18 +33,18 @@
                     <label class="col-sm-4 col-md-2 col-form-label">ระหว่างวันที่</label>
                     <div class="col col-sm-8 col-md-3">
                         <input type="text" class="form-control" placeholder="วันที่" bsDatepicker
-                            [(ngModel)]="scheduleItem.startDate">
+                            [(ngModel)]="item.scheduleItem.startDate">
                     </div>
                     <label class="col-sm-4 col-md-1 col-form-label">ถึงวันที่</label>
                     <div class="col col-sm-8 col-md-3">
                         <input type="text" class="form-control" placeholder="วันที่" bsDatepicker
-                            [(ngModel)]="scheduleItem.endDate">
+                            [(ngModel)]="item.scheduleItem.endDate">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-md-2 col-form-label">รวมจำนวน</label>
                     <div class="col-sm-8 col-md-3">
-                        <input type="text" class="form-control" placeholder="จำนวน" [(ngModel)]="scheduleItem.numDate">
+                        <input type="text" class="form-control" placeholder="จำนวน" [(ngModel)]="item.scheduleItem.numDate">
                     </div>
                     <label class="col-sm-4 col-md-2 col-form-label">วัน</label>
                 </div>

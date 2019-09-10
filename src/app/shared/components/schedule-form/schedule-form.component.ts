@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { iScheduleList } from 'src/app/_models/display.model';
 import { Province } from 'src/app/shared/commonSelect';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { iScheduleListAction } from 'src/app/_models/schedule.model';
 
 
 @Component({
@@ -10,9 +10,9 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./schedule-form.component.css']
 })
 export class ScheduleFormComponent implements OnInit {
-  @Input() scheduleItem: iScheduleList;
+  @Input('scheduleItem') item: iScheduleListAction;
   @Input() modalRef: BsModalRef;
-  @Output() sendBack  = new EventEmitter<iScheduleList>();
+  @Output() sendBack = new EventEmitter<iScheduleListAction>();
 
   Province = Province;
   event: EventEmitter<any> = new EventEmitter();
@@ -24,7 +24,7 @@ export class ScheduleFormComponent implements OnInit {
 
   ngOnInit() {
     this.bsModalRef = this.modalRef;
-    console.log('INPUT ', this.scheduleItem);
+    console.log('INPUT ', this.item);
   }
 
   onClose() {
@@ -40,6 +40,6 @@ export class ScheduleFormComponent implements OnInit {
   }
 
   sendBackItem() {
-    this.sendBack.emit( this.scheduleItem );
+    this.sendBack.emit(this.item);
   }
 }
