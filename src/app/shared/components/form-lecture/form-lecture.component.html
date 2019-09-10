@@ -233,7 +233,7 @@
 <ng-template #template let-modal class="modal fade" >
     <div class="modal-content">
         <div class="modal-body px-0 py-0">
-            <schedule-form [scheduleItem]="scheduleItem"></schedule-form>
+            <schedule-form [scheduleItem]="scheduleItem" [modalRef]="modalRef"  (sendBack)="onSendBack($event)"></schedule-form>
         </div>
     </div>
 </ng-template>

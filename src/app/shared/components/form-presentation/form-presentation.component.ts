@@ -29,7 +29,7 @@ export class FormPresentationComponent implements OnInit {
   ) { }
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show( template, this.modalConfig );
+    this.modalRef = this.modalService.show(template, this.modalConfig);
   }
 
   ngOnInit() {
@@ -43,6 +43,10 @@ export class FormPresentationComponent implements OnInit {
       titleClass: 'text-light',
       progressBar: true
     });
+  }
+
+  saveScheduleForm() {
+    this.modalRef.hide();
   }
 
 }

@@ -105,6 +105,11 @@ export class FormLectureComponent implements OnInit {
     });
   }
 
+  onSendBack( item : iScheduleList ) {
+    console.log('onSendBack : ');
+    console.log(item);
+  }
+
 }
 
 
