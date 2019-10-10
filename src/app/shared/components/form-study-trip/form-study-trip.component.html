@@ -3,6 +3,7 @@
         <div class="card card-signin my-0">
             <div class="card-header bg-warning rounded-top">
                 <h3 class="title-page text-secondary">บันทึกคำขออนุมัติไปศึกษาดูงาน</h3>
+                <input type="hidden" class="form-control" [(ngModel)]="r.request_type">
             </div>
             <div class="card-body">
                 <div class="row">
@@ -10,20 +11,20 @@
                         <div class="form-group row">
                             <label class="col-4 col-form-label text-right">ส่วนราชการ</label>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="ชื่อส่วนราชการ">
+                                <input type="text" class="form-control" placeholder="ชื่อส่วนราชการ" [(ngModel)]="r.governmentA">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-4 col-form-label text-right">เลขที่หนังสือ</label>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="เลขที่หนังสือ">
+                                <input type="text" class="form-control" placeholder="เลขที่หนังสือ" [(ngModel)]="r.bookNum">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-4 col-form-label text-right">ลงวันที่</label>
                             <div class="col-8">
                                 <input type="text" class="form-control" placeholder="ลงวันที่" bsDatepicker
-                                    [bsConfig]="dpConfig">
+                                    [bsConfig]="dpConfig" [(ngModel)]="r.date">
                             </div>
                         </div>
                     </div>
@@ -33,7 +34,7 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-md-1 col-form-label">เรียน</label>
                             <div class="col col-sm-8 col-md-6">
-                                <select class="form-control">
+                                <select class="form-control" [(ngModel)]="r.sendTo">
                                     <option>คณบดี คณะวิทยาศาสตร์และเทคโนโลยี (ผ่านหัวหน้าสาขาวิชา/หัวหน้างาน)</option>
                                     <option>คณบดี คณะวิทยาศาสตร์และเทคโนโลยี</option>
                                 </select>
@@ -54,7 +55,7 @@
                                     <label class="col-sm-4 col-md-2 col-form-label">หน่วยงานผู้เชิญ</label>
                                     <div class="col-sm-8 col-md-10">
                                         <input type="text" class="form-control" placeholder="หน่วยงานผู้เชิญ"
-                                            [(ngModel)]="r.orgName">
+                                            [(ngModel)]="r.org_name">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -75,17 +76,20 @@
                                     </div>
                                     <label class="col-sm-4 col-md-1 col-form-label">โทรศัพท์</label>
                                     <div class="col col-sm-8 col-md-5">
-                                        <input type="text" class="form-control" placeholder="โทรศัพท์" [(ngModel)]="r.tel">
+                                        <input type="text" class="form-control" placeholder="โทรศัพท์"
+                                            [(ngModel)]="r.tel">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-md-2 col-form-label">ผู้ประสานงาน</label>
                                     <div class="col col-sm-8 col-md-5">
-                                        <input type="text" class="form-control" placeholder="ชื่อ-สกุล" [(ngModel)]="r.coordinator">
+                                        <input type="text" class="form-control" placeholder="ชื่อ-สกุล"
+                                            [(ngModel)]="r.coordinator">
                                     </div>
                                     <label class="col-sm-4 col-md-1 col-form-label">โทรศัพท์</label>
                                     <div class="col col-sm-8 col-md-4">
-                                        <input type="text" class="form-control" placeholder="โทรศัพท์" [(ngModel)]="r.coordinatorTel">
+                                        <input type="text" class="form-control" placeholder="โทรศัพท์"
+                                            [(ngModel)]="r.coordinatorTel">
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +172,7 @@
                                     </div>
                                     <div class="col">
                                         <button type="submit" class="btn btn-warning btn-sm float-right"
-                                            (click)="openModal(template)">
+                                            (click)="callAddNewRow()">
                                             <i class="fa fa-plus text-danger" aria-hidden="true"></i> เพิ่มกำหนดการณ์
                                         </button>
                                     </div>
@@ -178,44 +182,11 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group row">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">ชื่อ-สกุลวิทยากร</th>
-                                                        <th scope="col">สถานที่</th>
-                                                        <th scope="col">จังหวัด</th>
-                                                        <th scope="col">ระหว่างวันที่</th>
-                                                        <th scope="col">ถึงวันที่</th>
-                                                        <th scope="col">จำนวนวัน</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">อ.ทดสอบ1</th>
-                                                        <td>ม.ธรรมศาสตร์ ศูนย์รังสิต</td>
-                                                        <td>ปทุมธาณี</td>
-                                                        <td>2 กันยายน 2562</td>
-                                                        <td>3 กันยายน 2562</td>
-                                                        <td>1</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">อ.ทดสอบ2</th>
-                                                        <td>ม.รังสิต</td>
-                                                        <td>ปทุมธาณี</td>
-                                                        <td>4 กันยายน 2562</td>
-                                                        <td>6 กันยายน 2562</td>
-                                                        <td>2</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">อ.ทดสอบ3</th>
-                                                        <td>ม.ธรรมศาสตร์ ศูนย์รังสิต</td>
-                                                        <td>ปทุมธาณี</td>
-                                                        <td>2 กันยายน 2562</td>
-                                                        <td>6 กันยายน 2562</td>
-                                                        <td>5</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            <ag-grid-angular style="width: 100%; height: 500px; font-size: medium;"
+                                                class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"
+                                                [defaultColDef]="defaultColDef" (rowClicked)="onRowClicked($event)"
+                                                (gridReady)="onGridReady($event)">
+                                            </ag-grid-angular>
                                         </div>
                                     </div>
                                 </div>
@@ -242,11 +213,20 @@
     </div>
 </div>
 
-<ng-template #template class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+<ng-template #template let-modal class="modal fade">
+    <div class="modal-content">
+        <div class="modal-body px-0 py-0">
+            <schedule-form [scheduleItem]="scheduleItem" [modalRef]="modalRef" [openForm]="openForm"
+                (sendBack)="onSendBack($event)"></schedule-form>
+        </div>
+    </div>
+</ng-template>
+
+<!-- <ng-template #template class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
 
     <div class="modal-content">
         <div class="modal-body px-0 py-0">
-            <!-- Form บันทึกกำหนดการณ์ -->
+            Form บันทึกกำหนดการณ์
             <div class="card card-signin my-0">
                 <div class="card-header  rounded-top">
                     <h5 class="title-page text-secondary">บันทึกกำหนดการณ์</h5>
@@ -305,4 +285,4 @@
             </div>
         </div>
     </div>
-</ng-template>
+</ng-template> -->

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { displayDashboardList } from 'src/app/_models/display.model';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { Request } from 'src/app/_models/request.model';
+import { RequestApproval } from 'src/app/_models/form.model';
 
 const DATA: displayDashboardList[] = [
   { request_type: 'ไปนิเทศนักศึกษา', department: 'สาขา A', amount_time: 10, amount_day: 10},
@@ -28,7 +29,7 @@ export class ApprovalDashboardComponent implements OnInit {
 
 
   rowData: displayDashboardList[] = [];
-  requestData: Request[] = [];
+  requestData: RequestApproval[] = [];
 
   constructor(
     private ApiService: ApiService

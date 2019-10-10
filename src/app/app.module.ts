@@ -23,6 +23,7 @@ import { ToastrModule } from 'ngx-toastr';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AgGridModule.withComponents([]),
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
