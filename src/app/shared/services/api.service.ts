@@ -28,6 +28,16 @@ export class ApiService {
     )
   }
 
+  public getScheduleByID(id : number) : Observable<iScheduleList[]> {
+    const url = `${APIUrl.ScheduleReadByID}?rid=${id}`;
+    console.log('API URL : ', url);
+    return this.http.get(url).pipe(
+      map((res) => {
+        return res['records'];
+      })
+    )
+  }
+
   public getRequestByID(id : number){
     const url = `${APIUrl.RequestReadByID}?rid=${id}`;
     console.log('API URL : ', url);

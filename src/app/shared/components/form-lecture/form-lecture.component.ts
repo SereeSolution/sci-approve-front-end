@@ -43,7 +43,7 @@ export class FormLectureComponent implements OnInit {
   Province = Province;
   requestDate: any;
   openForm: string = 'LECTURE';
-  date: Date;  
+  date: Date;
   dateConfig: Partial<BsDatepickerConfig> = dpConfig;    // Config date format
 
   // Modal
@@ -120,20 +120,38 @@ export class FormLectureComponent implements OnInit {
 
     if (this.requestID) {
       console.log('Request ID : ', this.requestID);
+
       this.apiService.getRequestByID(Number.parseInt(this.requestID)).subscribe(
         (res) => {
-          console.log(res);
-          this.setDataInForm(res);
+          console.log("res Description: ",res);
+          this.setDescriptionInForm(res);
         }
       );
+
+      this.apiService.getScheduleByID(Number.parseInt(this.requestID)).subscribe(
+        (res) => {
+          console.log("res Schedule: ",res);
+          this.setScheduleListInForm(res);
+        }
+      );
+
+      
     }
 
   }
 
-  setDataInForm(data : any){
+  setDescriptionInForm(data: any) {
     this.r = data;
     this.date = new Date(this.r.date);
     console.log(this.date.toString());
+  }
+
+  setScheduleListInForm(data: any) {
+    // for (let scheduleItem of data) {
+    //   this.rowData.push(scheduleItem);
+    // }
+    this.rowData = data;
+    console.log("SetScheduleList: ",this.rowData);
   }
 
   saveData() {
