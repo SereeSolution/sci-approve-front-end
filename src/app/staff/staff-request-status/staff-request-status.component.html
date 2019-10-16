@@ -49,19 +49,19 @@
                 <div class="modal-body px-0 py-0 " *ngIf="openForm === 'SUPERVISION'">
                         <!-- <form-lecture [scheduleItem]="scheduleItem" [modalRef]="modalRef" [openForm]="openForm"
                                 (sendBack)="onSendBack($event)"></form-lecture> -->
-                        <form-supervision></form-supervision>
+                        <form-supervision [requestID]="requestID"></form-supervision>
                 </div>
 
                 <div class="modal-body px-0 py-0 " *ngIf="openForm === 'PRESENT'">
                         <!-- <form-lecture [scheduleItem]="scheduleItem" [modalRef]="modalRef" [openForm]="openForm"
                                 (sendBack)="onSendBack($event)"></form-lecture> -->
-                        <form-presentation></form-presentation>
+                        <form-presentation [requestID]="requestID"></form-presentation>
                 </div>
 
                 <div class="modal-body px-0 py-0 " *ngIf="openForm === 'TRIP'">
                         <!-- <form-lecture [scheduleItem]="scheduleItem" [modalRef]="modalRef" [openForm]="openForm"
                                 (sendBack)="onSendBack($event)"></form-lecture> -->
-                        <form-study-trip></form-study-trip>
+                        <form-study-trip [requestID]="requestID"></form-study-trip>
                 </div>
 
         </div>

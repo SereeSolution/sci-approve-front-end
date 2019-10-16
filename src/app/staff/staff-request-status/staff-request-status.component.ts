@@ -48,8 +48,6 @@ export class StaffRequestStatusComponent implements OnInit {
     { headerName: 'เอกสารแนบ', field: 'file' },
     { headerName: 'วันที่อนุมัติ', field: 'approve_date' },
     { headerName: 'สถานะ', field: 'status' },
-
-
   ];
 
   openForm: string = 'LECTURE';
@@ -75,7 +73,6 @@ export class StaffRequestStatusComponent implements OnInit {
       this.requestData = res;
       this.getRequestData(res);
     });
-
   }
 
   openModal(template: TemplateRef<any>) {
@@ -132,7 +129,6 @@ export class StaffRequestStatusComponent implements OnInit {
     //       console.log(this.dd);
     //     }
     //   );
-
   }
 
   // sizeToFit() {
@@ -161,7 +157,6 @@ export class StaffRequestStatusComponent implements OnInit {
     //this.initData();
 
     // this.initMockData();
-
   }
 
   onRowClicked(event: any) {
@@ -180,17 +175,21 @@ export class StaffRequestStatusComponent implements OnInit {
     } else if (event['data'].type_name == "ขออนุมัติไปนิเทศนักศึกษา") {
       console.log(event['data'].type_name);
       this.openForm = 'SUPERVISION';
+      this.requestID = event['data'].request_id;
+      this.openModal(this.templateRef);
 
-    } else if (event['data'].type_name == "ขออนุมัติไปเสนอผลงาน") {
+    } else if (event['data'].type_name == "ขออนุมัติไปนำเสนอผลงาน") {
       console.log(event['data'].type_name);
       this.openForm = 'PRESENT';
+      this.requestID = event['data'].request_id;
+      this.openModal(this.templateRef);
 
     } else if (event['data'].type_name == "ขออนุมัติไปศึกษาดูงาน") {
       console.log(event['data'].type_name);
       this.openForm = 'TRIP';
+      this.requestID = event['data'].request_id;
+      this.openModal(this.templateRef);
     }
-
-
   }
 }
 

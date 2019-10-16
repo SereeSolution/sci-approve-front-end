@@ -10,6 +10,7 @@ import { ApprovalNavComponent } from './approval-nav/approval-nav.component';
 import { SharedModule } from '../shared/shared.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { ApprovalLayoutComponent } from './approval-layout/approval-layout.component';
+import { ApprovalRequestFormComponent } from './approval-request-form/approval-request-form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { ApprovalLayoutComponent } from './approval-layout/approval-layout.compo
     ApprovalRequestApproveComponent, 
     ApprovalRequestCommentComponent, 
     ApprovalRequestStatComponent, 
-    ApprovalNavComponent, ApprovalLayoutComponent
+    ApprovalNavComponent, 
+    ApprovalLayoutComponent,
+    ApprovalRequestFormComponent
   ],
   imports: [
     CommonModule,

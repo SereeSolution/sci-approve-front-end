@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card card-signin my-0">
             <div class="card-header bg-warning rounded-top">
-                <h3 class="title-page text-secondary">บันทึกคำขออนุมัติไปเสนอผลงาน</h3>
+                <h3 class="title-page text-secondary">บันทึกคำขออนุมัติไปนำเสนอผลงาน</h3>
                 <input type="hidden" class="form-control" [(ngModel)]="r.request_type">
             </div>
             <div class="card-body">
@@ -68,7 +68,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-md-2 col-form-label">จังหวัด</label>
                                     <div class="col col-sm-8 col-md-4">
-                                        <select class="form-control">
+                                        <select class="form-control" [(ngModel)]="r.province">
                                             <option>----- กรุณาระบุจังหวัด -----</option>
                                             <option *ngFor="let pv of Province" value="{{pv.value}}">{{pv.display}}
                                             </option>

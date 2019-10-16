@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, Input } from '@angular/core';
 import { Province } from 'src/app/shared/commonSelect';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { RequestApproval, iScheduleList, iScheduleListAction, Form, } from 'src/app/_models/form.model';
@@ -20,10 +20,12 @@ const ScheduleList: iScheduleList[] = [
 })
 export class FormStudyTripComponent implements OnInit {
   @ViewChild('template', { static: false }) templateRef: TemplateRef<any>;
+  @Input() requestID: string;
   //@ViewChild('template') templateRef: TemplateRef<any>;  
   Province = Province;
   requestDate: any;
   openForm: string = 'TRIP';
+  date: Date;
 
   // Modal
   modalRef: BsModalRef;
@@ -93,7 +95,41 @@ export class FormStudyTripComponent implements OnInit {
     //this.rowData = ScheduleList;
     this.form = new Form();
     //this.h.request_type = 1;
-    this.r.request_type = 4;
+    this.r.request_type = 2;
+
+    if (this.requestID) {
+      console.log('Request ID : ', this.requestID);
+
+      this.apiService.getRequestByID(Number.parseInt(this.requestID)).subscribe(
+        (res) => {
+          console.log("res Description: ",res);
+          this.setDescriptionInForm(res);
+        }
+      );
+
+      this.apiService.getScheduleByID(Number.parseInt(this.requestID)).subscribe(
+        (res) => {
+          console.log("res Schedule: ",res);
+          this.setScheduleListInForm(res);
+        }
+      );
+
+      
+    }
+  }
+
+  setDescriptionInForm(data: any) {
+    this.r = data;
+    this.date = new Date(this.r.date);
+    console.log(this.date.toString());
+  }
+
+  setScheduleListInForm(data: any) {
+    // for (let scheduleItem of data) {
+    //   this.rowData.push(scheduleItem);
+    // }
+    this.rowData = data;
+    console.log("SetScheduleList: ",this.rowData);
   }
 
   saveData() {
