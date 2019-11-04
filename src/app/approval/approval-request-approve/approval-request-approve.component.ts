@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { displayRequestList } from 'src/app/_models/display.model';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Request } from 'src/app/_models/request.model';
 import { RequestApproval } from 'src/app/_models/form.model';
+import { Profile } from 'src/app/_models/profile.model';
+import { UserProfileService } from 'src/app/shared/services/userProfile.service';
 
 
 const DATA: displayRequestList[] = [
@@ -24,45 +27,84 @@ const DATA: displayRequestList[] = [
   styleUrls: ['./approval-request-approve.component.css']
 })
 export class ApprovalRequestApproveComponent implements OnInit {
+  @ViewChild('template', { static: false }) templateRef: TemplateRef<any>;
+
+  // Modal
+  modalRef: BsModalRef;
+  modalConfig = {
+    keyboard: true,
+    class: 'modal-lg'
+  };
 
   columnDefs = [
-    { headerName: 'วันที่ขออนุมัติ', field: 'request_date', suppressSizeToFit : true },
-    { headerName: 'หัวเรื่อง', field: 'request_topic' },
-    { headerName: 'สาขาวิชา/หน่วยงาน', field: 'dep_name' },
-    { headerName: 'ผู้ขออนุมัติ', field: 'request_emp' },
-    { headerName: 'สถานะ', field: 'status' },
+    { headerName: 'วันที่ขออนุมัติ', field: 'date', suppressSizeToFit: true },
+    { headerName: 'หัวเรื่อง', field: 'type_name' },
+    { headerName: 'สาขาวิชา/หน่วยงาน', field: 'governmentA' },
+    { headerName: 'ผู้ขออนุมัติ', field: '' },
+    { headerName: 'สถานะ', field: '' },
     // { headerName: 'วันที่อนุมัติ', field: 'approve_date' },
     // { headerName: 'เอกสารแนบ', field: 'file' },
   ];
+
+  openForm: string = '';
+  requestID: string;
+
   private gridApi;
   private gridColumnApi;
   private defaultColDef;
 
   rowData: displayRequestList[] = [];
   requestData: RequestApproval[] = [];
+  userProfile: Profile;
 
   constructor(
-    private ApiService: ApiService
-  ) { }
+    private ApiService: ApiService,
+    private modalService: BsModalService,
+    private userProfileService: UserProfileService
+  ) {
+    this.userProfile = new Profile();
+    this.userProfile = this.userProfileService.getUserProfile();
+    const requestObservable = this.ApiService.getRequestViewByID(Number.parseInt(this.userProfile.department));
+    requestObservable.subscribe(res => {
+      this.requestData = res;
+      this.getRequestData(res);
+    });
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, this.modalConfig);
+  }
 
   ngOnInit() {
-    this.defaultColDef = { resizable: true, sortable : true };
+    this.defaultColDef = { resizable: true, sortable: true };
   }
 
-  initMockData() {
-    this.rowData = DATA;
+  getRequestData(data: RequestApproval[]) {
+    console.log('getRequestData1 > ', this.userProfile);
+    this.requestData = data;
+    console.log('getRequestData2 > ', this.requestData);
+    
+    // data.forEach(r => {
+    //   if(this.userProfile.department == r.governmentA){
+    //     dataR.push(r);
+    // }
+    // });
   }
 
-  initData() {
-    this.ApiService.getRequests()
-      .subscribe(
-        (res) => {
-          this.requestData = res;
-          console.log(res);
-        }
-      );
-    console.log(this.requestData);
-  }
+  // initMockData() {
+  //   this.rowData = DATA;
+  // }
+
+  // initData() {
+  //   this.ApiService.getRequests()
+  //     .subscribe(
+  //       (res) => {
+  //         this.requestData = res;
+  //         console.log(res);
+  //       }
+  //     );
+  //   console.log(this.requestData);
+  // }
 
   // sizeToFit() {
   //   this.gridApi.sizeColumnsToFit();
@@ -86,13 +128,41 @@ export class ApprovalRequestApproveComponent implements OnInit {
     // this.defaultColDef = { resizable: true, sortable : true };
 
     // get data to grid
-    this.initMockData();
-    this.initData();
+    // this.initMockData();
+    // this.initData();
 
   }
 
   onRowClicked(event: any) {
     console.log('event - on row click \n =>', event);
-    alert('event - on row click \n => ID : ' + event['data'].request_code + ' Topic : ' + event['data'].request_topic);
+    //alert('event - on row click \n => ID : ' + event['data'].request_id + ' Topic : ' + event['data'].type_name);
+
+    if (event['data'].type_name == "ขออนุมัติไปเป็นวิทยากร") {
+      console.log(event['data'].type_name);
+      this.openForm = 'LECTURE';
+      //this.openForm = 'SUPERVISION';
+      // this.openForm = 'PRESENT';
+      //this.openForm = 'TRIP';
+      this.requestID = event['data'].request_id;
+      this.openModal(this.templateRef);
+
+    } else if (event['data'].type_name == "ขออนุมัติไปนิเทศนักศึกษา") {
+      console.log(event['data'].type_name);
+      this.openForm = 'SUPERVISION';
+      this.requestID = event['data'].request_id;
+      this.openModal(this.templateRef);
+
+    } else if (event['data'].type_name == "ขออนุมัติไปนำเสนอผลงาน") {
+      console.log(event['data'].type_name);
+      this.openForm = 'PRESENT';
+      this.requestID = event['data'].request_id;
+      this.openModal(this.templateRef);
+
+    } else if (event['data'].type_name == "ขออนุมัติไปศึกษาดูงาน") {
+      console.log(event['data'].type_name);
+      this.openForm = 'TRIP';
+      this.requestID = event['data'].request_id;
+      this.openModal(this.templateRef);
+    }
   }
 }

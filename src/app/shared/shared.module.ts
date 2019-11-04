@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 import { ScheduleFormComponent } from './components/schedule-form/schedule-form.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { CryptoService } from './services/crypto.service';
+import { UserProfileService } from './services/userProfile.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { BrowserModule } from '@angular/platform-browser';
   ],
   providers: [
     ApiService,
-    TuAuthenService
+    TuAuthenService,
+    UserProfileService,
+    CryptoService
   ],
   entryComponents:[
     ScheduleFormComponent

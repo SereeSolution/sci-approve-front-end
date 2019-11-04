@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
+import { CryptoService } from './shared/services/crypto.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule,    
     AgGridModule.withComponents([]),
     SharedModule,
     FormsModule,
@@ -35,7 +36,8 @@ import { ToastrModule } from 'ngx-toastr';
     }) // ToastrModule added
   ],
   providers: [
-    BsModalRef
+    BsModalRef,
+    CryptoService,
   ],
   bootstrap: [AppComponent]
 })

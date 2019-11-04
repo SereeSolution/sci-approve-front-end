@@ -47,6 +47,16 @@ export class ApiService {
       })
     )
   }
+
+  public getRequestViewByID(id : number){
+    const url = `${APIUrl.RequestReadViewByID}?rid=${id}`;
+    console.log('API URL : ', url);
+    return this.http.get(url).pipe(
+      map((res) => {
+        return res['records'];
+      })
+    )
+  }
   
   public createRequest(obj: RequestApproval) {
     console.log('API URL : ', APIUrl.RequestCreate);

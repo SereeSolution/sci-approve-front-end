@@ -5,6 +5,9 @@ import { loginParam } from 'src/app/_models/authen.model';
 import { TuAuthenService } from 'src/app/shared/services/tu-authen.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from } from 'rxjs';
+import { UserProfileService } from 'src/app/shared/services/userProfile.service';
+import { Profile } from 'src/app/_models/profile.model';
+
 
 const API_Key = 'MGRiOTVmNDUwZGQ4ODFhYTRkZTA3YWNhNzVhN2Y2NTA5ODU0NjJiYzFmZDRmZWVlNGYyYTQzMmIxMGVjZGM2ZA==';
 
@@ -34,7 +37,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private http: HttpClient,
-    private authen: TuAuthenService
+    private authen: TuAuthenService,
+    private userProfileService: UserProfileService
   ) { }
 
   ngOnInit() {
@@ -51,7 +55,25 @@ export class LoginComponent implements OnInit {
     //this.login(this.loginForm.value);
     //this.auth(this.loginForm.value);
 
-    this.router.navigate( ['/staff'] );
+
+    // IF SUCCESS
+    let user: Profile = new Profile();
+    user.name = 'ดร.อุ๊ฟ';
+    user.department = '12';
+    user.position = 'Super Developer';
+    user.role = 'APPROVER';
+    //user.role = 'STAFF';
+    this.userProfileService.setUserProfile(user);    
+    switch (user.role) {
+      case 'STAFF' : this.router.navigate(['/staff']);
+        break;
+      case 'APPROVER': this.router.navigate(['/approval']);
+        break;
+      default:
+        this.router.navigate(['/staff']);
+        
+    }
+
 
     //this.testRequest();
   }
@@ -62,10 +84,10 @@ export class LoginComponent implements OnInit {
         { "UserName": login.UserName, "PassWord": login.PassWord },
         {
           headers: new HttpHeaders({
-            "Application-Key": API_Key,            
+            "Application-Key": API_Key,
             "Content-Type": "application/json",
-            
-            
+
+
             //"Accept": "*/*",
             //"cache-control": "no-cache",
             //'Access-Control-Allow-Origin': '*',
@@ -83,7 +105,7 @@ export class LoginComponent implements OnInit {
 
 
   testRequest() {
-    let apiURL = "https://spreadsheets.google.com/feeds/list/1Auu5Pj-zSbhiS55GDptBIb19osr7EStd9byKrobMKWE/1/public/values?alt=json";    
+    let apiURL = "https://spreadsheets.google.com/feeds/list/1Auu5Pj-zSbhiS55GDptBIb19osr7EStd9byKrobMKWE/1/public/values?alt=json";
     console.log(apiURL);
     return new Promise((resolve, reject) => {
       this.http.get(apiURL)
@@ -134,7 +156,5 @@ export class LoginComponent implements OnInit {
       )
     );
     */
-
   }
-
 }

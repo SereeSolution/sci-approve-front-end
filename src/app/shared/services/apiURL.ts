@@ -6,5 +6,6 @@ export const APIUrl = {
     RequestUpdate : 'http://localhost/sci_approval_api/request/update',
     RequestDelete : 'http://localhost/sci_approval_api/request/delete',
     FormCreate: 'http://localhost/sci_approval_api/form/create',
-    ScheduleReadByID: 'http://localhost/sci_approval_api/form/scheduleFindByID'
+    ScheduleReadByID: 'http://localhost/sci_approval_api/form/scheduleFindByID',
+    RequestReadViewByID: 'http://localhost/sci_approval_api/form/viewFindByID',
 }

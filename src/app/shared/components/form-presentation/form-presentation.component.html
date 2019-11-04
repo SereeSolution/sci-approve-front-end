@@ -184,7 +184,7 @@
                                 <button type="button" class="btn btn-primary col-md-2 offset-md-4"
                                     (click)="saveData()">บันทึกคำขออนุมัติ</button>
                                 <button type="button"
-                                    class="btn btn-secondary col-md-2 offset-md-1">ยกเลิกคำขออนุมัติ</button>
+                                    class="btn btn-secondary col-md-2 offset-md-1" (click)="onClose()">ยกเลิกคำขออนุมัติ</button>
                             </div>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
 <ng-template #template let-modal class="modal fade">
     <div class="modal-content">
         <div class="modal-body px-0 py-0">
-            <schedule-form [scheduleItem]="scheduleItem" [modalRef]="modalRef" [openForm]="openForm"
+            <schedule-form [scheduleItem]="scheduleItem" [modalRef]="bsModalRef" [openForm]="openForm"
                 (sendBack)="onSendBack($event)"></schedule-form>
         </div>
     </div>

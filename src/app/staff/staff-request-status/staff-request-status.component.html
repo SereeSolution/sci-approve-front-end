@@ -43,25 +43,25 @@
                 <div class="modal-body px-0 py-0 " *ngIf="openForm === 'LECTURE'">
                         <!-- <form-lecture [scheduleItem]="scheduleItem" [modalRef]="modalRef" [openForm]="openForm"
                                 (sendBack)="onSendBack($event)"></form-lecture> -->
-                        <form-lecture [requestID]="requestID"></form-lecture>
+                        <form-lecture [modalRef]="modalRef" [requestID]="requestID"></form-lecture>
                 </div>
 
                 <div class="modal-body px-0 py-0 " *ngIf="openForm === 'SUPERVISION'">
                         <!-- <form-lecture [scheduleItem]="scheduleItem" [modalRef]="modalRef" [openForm]="openForm"
                                 (sendBack)="onSendBack($event)"></form-lecture> -->
-                        <form-supervision [requestID]="requestID"></form-supervision>
+                        <form-supervision [modalRef]="modalRef" [requestID]="requestID"></form-supervision>
                 </div>
 
                 <div class="modal-body px-0 py-0 " *ngIf="openForm === 'PRESENT'">
                         <!-- <form-lecture [scheduleItem]="scheduleItem" [modalRef]="modalRef" [openForm]="openForm"
                                 (sendBack)="onSendBack($event)"></form-lecture> -->
-                        <form-presentation [requestID]="requestID"></form-presentation>
+                        <form-presentation [modalRef]="modalRef" [requestID]="requestID"></form-presentation>
                 </div>
 
                 <div class="modal-body px-0 py-0 " *ngIf="openForm === 'TRIP'">
                         <!-- <form-lecture [scheduleItem]="scheduleItem" [modalRef]="modalRef" [openForm]="openForm"
                                 (sendBack)="onSendBack($event)"></form-lecture> -->
-                        <form-study-trip [requestID]="requestID"></form-study-trip>
+                        <form-study-trip [modalRef]="modalRef" [requestID]="requestID"></form-study-trip>
                 </div>
 
         </div>

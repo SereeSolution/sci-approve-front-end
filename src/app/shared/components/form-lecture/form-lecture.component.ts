@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, Input, EventEmitter } from '@angular/core';
 import { Province } from 'src/app/shared/commonSelect';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RequestApproval, iScheduleList, iScheduleListAction, Form } from 'src/app/_models/form.model';
@@ -6,7 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../services/api.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker/bs-datepicker.config';
 import { dpConfig } from 'src/app/shared/common.config';
-
+import { UserProfileService } from '../../services/userProfile.service';
+import { Profile } from 'src/app/_models/profile.model';
 
 const ScheduleList: iScheduleList[] = [
   // { sid: null, empID: 1, empName: 'รศ.ดร.อรุณศรี  สุขเกษม', orgName: 'สถาปันเพิ่มผลผลิต', provinceID: 10, provinceName: 'กรุงเทพมหานคร', startDate: '01/20/2560', endDate: '01/20/2560', numDate: 1 , request_id: 1},
@@ -37,20 +38,26 @@ const emp: Employee[] = [
 })
 
 export class FormLectureComponent implements OnInit {
-  @ViewChild('template', { static: false }) templateRef: TemplateRef<any>;
+  @ViewChild('template', { static: false }) public templateRef: TemplateRef<any>;
+  @Input('modalRef') modalRef: BsModalRef;
   @Input() requestID: string;
+  //@Input() modalRef: BsModalRef;
   //@ViewChild('template') templateRef: TemplateRef<any>;  
   Province = Province;
   requestDate: any;
   openForm: string = 'LECTURE';
   date: Date;
   dateConfig: Partial<BsDatepickerConfig> = dpConfig;    // Config date format
+  event: EventEmitter<any> = new EventEmitter();
 
   // Modal
-  modalRef: BsModalRef;
+  bsModalRef: BsModalRef;
   modalConfig = {
-    keyboard: true,
-    class: 'modal-lg'
+   keyboard: true,
+    class: 'modal-lg',
+    animated: true, 
+    backdrop: true, 
+    ignoreBackdropClick: false
   };
 
   // Data Entity 
@@ -71,16 +78,22 @@ export class FormLectureComponent implements OnInit {
   rowData: iScheduleList[] = [];
   scheduleItem: iScheduleListAction;
   form: Form;
+  editable_flag: boolean = false;
+  userProfile: Profile;
 
   constructor(
     private apiService: ApiService,
     private modalService: BsModalService,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private userProfileService: UserProfileService
+  ) { 
+    // this.bsModalRef = this.modalRef;
+     //console.log("5555555555555 ->>>", this.modalRef)
+  }
 
   openModal(template: TemplateRef<any>) {
     //this.modalRef = this.modalService.show(template, this.modalConfig);    
-    this.modalRef = this.modalService.show(template, this.modalConfig);
+    this.bsModalRef = this.modalService.show(template, this.modalConfig);
     //this.modalRef.content.scheduleItem = this.scheduleItem;
     //console.log('openModal : ',this.modalRef.content.scheduleItem);
     /*
@@ -110,6 +123,7 @@ export class FormLectureComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log('INPUT->>>>>>>>>>>>>> ', this.bsModalRef, this.requestID);
     this.r = new RequestApproval();
     //this.dateConfig = dpConfig;    // Config date format
     //this.h = new Headers();
@@ -123,20 +137,24 @@ export class FormLectureComponent implements OnInit {
 
       this.apiService.getRequestByID(Number.parseInt(this.requestID)).subscribe(
         (res) => {
-          console.log("res Description: ",res);
+          console.log("res Description: ", res);
           this.setDescriptionInForm(res);
         }
       );
 
       this.apiService.getScheduleByID(Number.parseInt(this.requestID)).subscribe(
         (res) => {
-          console.log("res Schedule: ",res);
+          console.log("res Schedule: ", res);
           this.setScheduleListInForm(res);
         }
       );
-
-      
     }
+    this.userProfile = new Profile();
+    this.userProfile = this.userProfileService.getUserProfile();
+    if (this.userProfile.role == 'APPROVER')
+      this.editable_flag = false;
+    else
+      this.editable_flag = true;
 
   }
 
@@ -151,7 +169,7 @@ export class FormLectureComponent implements OnInit {
     //   this.rowData.push(scheduleItem);
     // }
     this.rowData = data;
-    console.log("SetScheduleList: ",this.rowData);
+    console.log("SetScheduleList: ", this.rowData);
   }
 
   saveData() {
@@ -172,6 +190,7 @@ export class FormLectureComponent implements OnInit {
     this.apiService.createForm(this.form).subscribe(
       (res) => {
         console.log(res);
+        this.modalRef.hide();
       }
     );
 
@@ -219,6 +238,11 @@ export class FormLectureComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+  }
+
+  onClose() {
+    console.log('Close Click');
+    this.modalRef.hide();
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Profile } from 'src/app/_models/profile.model';
+import { UserProfileService } from '../../services/userProfile.service';
 
 
 @Component({
@@ -14,7 +15,9 @@ export class ProfileComponent implements OnInit {
   name: string;
   position: string;
   department: string;
-  constructor() {
+  constructor(
+    private userProfileService: UserProfileService
+  ) {
     
    }
 
@@ -25,9 +28,8 @@ export class ProfileComponent implements OnInit {
   initProfile() {
     this.topic = 'ยินดีต้อนรับ';
     this.p = new Profile();
-    this.p.name = 'นายอุ๊ฟ';
-    this.p.position = 'นักวิชาการคอมพิวเตอร์';
-    this.p.department = 'สำนักงานเลขานุการคณะ';
+    this.p = this.userProfileService.getUserProfile();
+    console.log( 'initProfile > ', this.p);
   }
 
 }

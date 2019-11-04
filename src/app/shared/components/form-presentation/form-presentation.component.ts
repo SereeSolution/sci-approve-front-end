@@ -20,6 +20,7 @@ const ScheduleList: iScheduleList[] = [
 })
 export class FormPresentationComponent implements OnInit {
   @ViewChild('template', { static: false }) templateRef: TemplateRef<any>;
+  @Input('modalRef') modalRef: BsModalRef;
   @Input() requestID: string;
   Province = Province;
   requestDate: any;
@@ -27,7 +28,7 @@ export class FormPresentationComponent implements OnInit {
   date: Date;
 
   // Modal
-  modalRef: BsModalRef;
+  bsModalRef: BsModalRef;
   modalConfig = {
     keyboard: true,
     class: 'modal-lg'
@@ -57,7 +58,7 @@ export class FormPresentationComponent implements OnInit {
   ) { }
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, this.modalConfig);
+    this.bsModalRef = this.modalService.show(template, this.modalConfig);
   }
 
   callAddNewRow() {
@@ -139,6 +140,7 @@ export class FormPresentationComponent implements OnInit {
     this.apiService.createForm(this.form).subscribe(
       (res) => {
         console.log(res);
+        this.modalRef.hide();
       }
     );
 
@@ -186,6 +188,11 @@ export class FormPresentationComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+  }
+
+  onClose() {
+    console.log('Close Click');
+    this.modalRef.hide();
   }
 
 }

@@ -20,6 +20,7 @@ const ScheduleList: iScheduleList[] = [
 })
 export class FormStudyTripComponent implements OnInit {
   @ViewChild('template', { static: false }) templateRef: TemplateRef<any>;
+  @Input('modalRef') modalRef: BsModalRef;
   @Input() requestID: string;
   //@ViewChild('template') templateRef: TemplateRef<any>;  
   Province = Province;
@@ -28,7 +29,7 @@ export class FormStudyTripComponent implements OnInit {
   date: Date;
 
   // Modal
-  modalRef: BsModalRef;
+  bsModalRef: BsModalRef;
   modalConfig = {
     keyboard: true,
     class: 'modal-lg'
@@ -60,7 +61,7 @@ export class FormStudyTripComponent implements OnInit {
 
   openModal(template: TemplateRef<any>) {
     //this.modalRef = this.modalService.show(template, this.modalConfig);    
-    this.modalRef = this.modalService.show(template, this.modalConfig);
+    this.bsModalRef = this.modalService.show(template, this.modalConfig);
     //this.modalRef.content.scheduleItem = this.scheduleItem;
     //console.log('openModal : ',this.modalRef.content.scheduleItem);
     /*
@@ -150,6 +151,7 @@ export class FormStudyTripComponent implements OnInit {
     this.apiService.createForm(this.form).subscribe(
       (res) => {
         console.log(res);
+        this.modalRef.hide();
       }
     );
 
@@ -197,6 +199,11 @@ export class FormStudyTripComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+  }
+
+  onClose() {
+    console.log('Close Click');
+    this.modalRef.hide();
   }
 
 }

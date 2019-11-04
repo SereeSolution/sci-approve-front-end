@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { displayRequestList } from 'src/app/_models/display.model';
 import { ApiService } from 'src/app/shared/services/api.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Request } from 'src/app/_models/request.model';
 import { RequestApproval } from 'src/app/_models/form.model';
 import { FormLectureComponent } from 'src/app/shared/components/form-lecture/form-lecture.component';
@@ -31,7 +32,7 @@ var rr: RequestApproval[] = [];
   styleUrls: ['./staff-request-status.component.css']
 })
 export class StaffRequestStatusComponent implements OnInit {
-  @ViewChild('template', { static: false }) templateRef: TemplateRef<any>;
+  @ViewChild('template', { static: false }) public templateRef: TemplateRef<any>;
 
   // Modal
   modalRef: BsModalRef;
@@ -50,7 +51,7 @@ export class StaffRequestStatusComponent implements OnInit {
     { headerName: 'สถานะ', field: 'status' },
   ];
 
-  openForm: string = 'LECTURE';
+  openForm: string = '';
   requestID: string;
 
   gridApi;
@@ -60,8 +61,6 @@ export class StaffRequestStatusComponent implements OnInit {
 
   rowData: RequestApproval[];
   requestData: RequestApproval[] = [];
-
-  tmp: any;
 
   constructor(
     private ApiService: ApiService,
@@ -90,7 +89,7 @@ export class StaffRequestStatusComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.defaultColDef = { resizable: true, sortable: true };
+    this.defaultColDef = { resizable: true, sortable: true };
     // //this.getRequestData();
     // console.log('init > ',this.requestData);
   }
@@ -115,6 +114,7 @@ export class StaffRequestStatusComponent implements OnInit {
           );
           */
   }
+  
   initMockData() {
     //this.requestData.length
     console.log(DATA);
@@ -171,6 +171,7 @@ export class StaffRequestStatusComponent implements OnInit {
       //this.openForm = 'TRIP';
       this.requestID = event['data'].request_id;
       this.openModal(this.templateRef);
+      console.log("ก่อน------------------->", this.modalRef);
 
     } else if (event['data'].type_name == "ขออนุมัติไปนิเทศนักศึกษา") {
       console.log(event['data'].type_name);

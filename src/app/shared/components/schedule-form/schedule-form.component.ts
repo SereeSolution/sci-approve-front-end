@@ -13,13 +13,12 @@ export class ScheduleFormComponent implements OnInit {
   @Input('scheduleItem') item: iScheduleListAction;
   @Input() modalRef: BsModalRef;
   @Input() openForm: string;
+  @Input() editable_flag: boolean;
   @Output() sendBack = new EventEmitter<iScheduleListAction>();
 
   Province = Province;
   event: EventEmitter<any> = new EventEmitter();
   
-
-
   constructor(
     private bsModalRef: BsModalRef
    
@@ -27,7 +26,9 @@ export class ScheduleFormComponent implements OnInit {
 
   ngOnInit() {
     this.bsModalRef = this.modalRef;
+    console.log('INPUT->>>>>>>>>>>>>> ', this.bsModalRef);
     console.log('INPUT ', this.openForm , this.item);
+    console.log('INPUT', this.editable_flag);
   }
 
   onClose() {
