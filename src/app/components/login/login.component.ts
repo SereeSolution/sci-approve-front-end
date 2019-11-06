@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from } from 'rxjs';
 import { UserProfileService } from 'src/app/shared/services/userProfile.service';
 import { Profile } from 'src/app/_models/profile.model';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 
 const API_Key = 'MGRiOTVmNDUwZGQ4ODFhYTRkZTA3YWNhNzVhN2Y2NTA5ODU0NjJiYzFmZDRmZWVlNGYyYTQzMmIxMGVjZGM2ZA==';
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private authen: TuAuthenService,
+    private commonService: CommonService,
     private userProfileService: UserProfileService
   ) { }
 
@@ -63,7 +65,10 @@ export class LoginComponent implements OnInit {
     user.position = 'Super Developer';
     user.role = 'APPROVER';
     //user.role = 'STAFF';
-    this.userProfileService.setUserProfile(user);    
+    this.commonService.getCommonData();
+
+
+    this.userProfileService.setUserProfile(user);
     switch (user.role) {
       case 'STAFF' : this.router.navigate(['/staff']);
         break;
@@ -71,7 +76,6 @@ export class LoginComponent implements OnInit {
         break;
       default:
         this.router.navigate(['/staff']);
-        
     }
 
 

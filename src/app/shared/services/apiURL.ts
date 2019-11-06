@@ -8,4 +8,8 @@ export const APIUrl = {
     FormCreate: 'http://localhost/sci_approval_api/form/create',
     ScheduleReadByID: 'http://localhost/sci_approval_api/form/scheduleFindByID',
     RequestReadViewByID: 'http://localhost/sci_approval_api/form/viewFindByID',
+    
+    //********* COMMON API ***********/
+    getAllDepartment : 'http://203.131.208.74/sample-api/department/getAllDepartment',
+    getAllProfessor : 'http://203.131.208.74/sample-api/staff/getProfessor',
 }

@@ -8,6 +8,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker/bs-datepicker.confi
 import { dpConfig } from 'src/app/shared/common.config';
 import { UserProfileService } from '../../services/userProfile.service';
 import { Profile } from 'src/app/_models/profile.model';
+import { GridOptions } from 'ag-grid-community';
 
 const ScheduleList: iScheduleList[] = [
   // { sid: null, empID: 1, empName: 'รศ.ดร.อรุณศรี  สุขเกษม', orgName: 'สถาปันเพิ่มผลผลิต', provinceID: 10, provinceName: 'กรุงเทพมหานคร', startDate: '01/20/2560', endDate: '01/20/2560', numDate: 1 , request_id: 1},
@@ -53,10 +54,10 @@ export class FormLectureComponent implements OnInit {
   // Modal
   bsModalRef: BsModalRef;
   modalConfig = {
-   keyboard: true,
+    keyboard: true,
     class: 'modal-lg',
-    animated: true, 
-    backdrop: true, 
+    animated: true,
+    backdrop: true,
     ignoreBackdropClick: false
   };
 
@@ -75,20 +76,26 @@ export class FormLectureComponent implements OnInit {
   public gridApi;
   public gridColumnApi;
   public defaultColDef;
+  public gridOption: GridOptions;
   rowData: iScheduleList[] = [];
   scheduleItem: iScheduleListAction;
   form: Form;
   editable_flag: boolean = false;
   userProfile: Profile;
+  showApprove: boolean = false;
+  //onRowClicked($event)
+  rowFunction = "onRowClicked($event)";
+
+
 
   constructor(
     private apiService: ApiService,
     private modalService: BsModalService,
     private toastr: ToastrService,
     private userProfileService: UserProfileService
-  ) { 
+  ) {
     // this.bsModalRef = this.modalRef;
-     //console.log("5555555555555 ->>>", this.modalRef)
+    //console.log("5555555555555 ->>>", this.modalRef)
   }
 
   openModal(template: TemplateRef<any>) {
@@ -151,11 +158,14 @@ export class FormLectureComponent implements OnInit {
     }
     this.userProfile = new Profile();
     this.userProfile = this.userProfileService.getUserProfile();
-    if (this.userProfile.role == 'APPROVER')
+    if (this.userProfile.role == 'APPROVER') {
       this.editable_flag = false;
-    else
+      this.showApprove = true;
+    }
+    else {
       this.editable_flag = true;
-
+      this.showApprove = false;
+    }
   }
 
   setDescriptionInForm(data: any) {
@@ -246,9 +256,6 @@ export class FormLectureComponent implements OnInit {
   }
 
 }
-
-
-
 
 export class Employee {
   id: number;

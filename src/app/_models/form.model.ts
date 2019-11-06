@@ -35,6 +35,8 @@ export class RequestApproval {              //-----รายละเอีย�
   studentDepartment: string  ;       // สาขาวิชา -- Supervision
   description: string    ;           // รายละเอียดเพิ่มเติม -- Supervision
   remark: string;                  //หมายเหตุ
+  approvers_id: string;            //id ของผู้อนุมัติ
+  approval_results: string;        //ผลการอนุมัติ
 }
 
 
@@ -63,6 +65,8 @@ export class RequestApprovalView {              //-----รายละเอี�
   description: string    ;           // รายละเอียดเพิ่มเติม -- Supervision
   remark: string;                  //หมายเหตุ
   type_name: string;
+  approvers_id: string;            //id ของผู้อนุมัติ
+  approval_results: string;        //ผลการอนุมัติ
 }
 
 

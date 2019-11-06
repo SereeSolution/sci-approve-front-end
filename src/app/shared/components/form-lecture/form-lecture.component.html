@@ -137,9 +137,9 @@
                                     <div class="col-md-12">
                                         <div class="form-group row">
                                             <ag-grid-angular style="width: 100%; height: 500px; font-size: medium;"
-                                                class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"
+                                                class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"                                                
                                                 [defaultColDef]="defaultColDef" (rowClicked)="onRowClicked($event)"
-                                                (gridReady)="onGridReady($event)">
+                                                (gridReady)="onGridReady($event)" >
                                             </ag-grid-angular>
                                             <!-- (gridReady)="onGridReady($event)"
                                                     (firstDataRendered)="onFirstDataRendered($event)" -->
@@ -151,7 +151,7 @@
                     </div>
                 </div>
 
-                <div class="card card-signin my-0 mb-3">
+                <div class="card card-signin my-0 mb-3" *ngIf="showApprove">
                     <div class="card-header  rounded-top">
                         <h5 class="title-page text-secondary">การอนุมัติ</h5>
                     </div>
@@ -218,7 +218,7 @@
     <div class="modal-content">
         <div class="modal-body px-0 py-0">
             <schedule-form [scheduleItem]="scheduleItem" [modalRef]="bsModalRef" [openForm]="openForm"
-                [editable_flag]="editable_flag" (sendBack)="onSendBack($event)"></schedule-form>
+                [editable_flag]="editable_flag" (sendBack)="onSendBack($event)" ></schedule-form>
         </div>
     </div>
 </ng-template>
