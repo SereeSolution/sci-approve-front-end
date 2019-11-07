@@ -1,6 +1,6 @@
-export interface loginParam {
-    UserName: string;
-    PassWord: string;
+export class loginParam {
+    username: string;
+    password: string;
 }
 
 export interface loginResponse {

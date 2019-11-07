@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { loginParam } from 'src/app/_models/authen.model';
+import { loginParam, loginResponse } from 'src/app/_models/authen.model';
 import { TuAuthenService } from 'src/app/shared/services/tu-authen.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from } from 'rxjs';
 import { UserProfileService } from 'src/app/shared/services/userProfile.service';
 import { Profile } from 'src/app/_models/profile.model';
 import { CommonService } from 'src/app/shared/services/common.service';
+import { ApiService } from 'src/app/shared/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 const API_Key = 'MGRiOTVmNDUwZGQ4ODFhYTRkZTA3YWNhNzVhN2Y2NTA5ODU0NjJiYzFmZDRmZWVlNGYyYTQzMmIxMGVjZGM2ZA==';
@@ -24,10 +26,10 @@ export class LoginComponent implements OnInit {
   options: any;
   result: any;
 
-  data: loginParam = {
-    UserName: 's_chal84',
-    PassWord: '3100900017671'
-  }
+  // data: loginParam = {
+  //   username: 's_chal84',
+  //   password: '3100900017671'
+  // }
 
   loginForm = this.fb.group({
     UserName: [''],
@@ -39,47 +41,77 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private authen: TuAuthenService,
+    private toastr: ToastrService,
     private commonService: CommonService,
-    private userProfileService: UserProfileService
+    private userProfileService: UserProfileService,
+    private apiServices: ApiService
   ) { }
 
   ngOnInit() {
   }
 
   OnSubmit() {
-
     console.log('Form submit : ', this.loginForm.value);
-    this.data.UserName = this.loginForm['email'];
-    this.data.PassWord = this.loginForm['password'];
-
-    console.log('DEBUG : ', this.loginForm.value);
-    //this.authen.login( this.loginForm.value );
-    //this.login(this.loginForm.value);
-    //this.auth(this.loginForm.value);
-
-
-    // IF SUCCESS
     let user: Profile = new Profile();
-    user.name = 'ดร.อุ๊ฟ';
-    user.department = '12';
-    user.position = 'Super Developer';
-    user.role = 'APPROVER';
-    //user.role = 'STAFF';
     this.commonService.getCommonData();
+    let res: loginResponse;
+    this.apiServices.login(this.loginForm.value).toPromise()
+      .then(result => {
+        console.log('From Promise:', result);
+        if (result['status'] = true) {
+          user.name = result['displayname_th'];
+          user.department = result['department'];
+          user.role = 'STAFF';
+          this.userProfileService.setUserProfile(user);
+          /*
+              this.userProfileService.setUserProfile(user);
+              switch (user.role) {
+                case 'STAFF': this.router.navigate(['/staff']);
+                  break;
+                case 'APPROVER': this.router.navigate(['/approval']);
+                  break;
+                default:
+                  this.router.navigate(['/staff']);
+              }
+          */
+          this.toastr.success('Login '+ result['message'] );
+        } else {
+          this.loginForm.reset();
+          console.log('Invalid username or password .');
+          this.toastr.warning('Login '+ result['message']);
+        }
+
+      })
+      .catch(
+        err => {
+          console.log('Error : ', err);
+        }
+      )
 
 
-    this.userProfileService.setUserProfile(user);
-    switch (user.role) {
-      case 'STAFF' : this.router.navigate(['/staff']);
-        break;
-      case 'APPROVER': this.router.navigate(['/approval']);
-        break;
-      default:
-        this.router.navigate(['/staff']);
+    console.log("API LOGIN return -----> ");
+
+
+
+
+  }
+
+  sendPostRequest() {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Application-Key', 'NWM2MDE0OTY4YTZmOGRiZWU3NGQxNmU4ZmE1OTVkODBkMzRmNzQxMjc3MGMyY2QxNDBjZTEyYTg0NTYxYjllMg==')
+      .set('Access-Control-Allow-Origin', 'true')
+      .set('Access-Control-Allow-Credentials', 'true');
+
+
+    const body = {
+      username: 'Kunmar',
+      password: '1103702197670',
     }
 
-
-    //this.testRequest();
+    return this.http
+      .post(this.apiURL, body, { headers: headers })
+      .subscribe(res => console.log("TEST LOGIN: ------> ", res));
   }
 
   auth(login): Promise<any> {

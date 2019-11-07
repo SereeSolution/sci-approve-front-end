@@ -5,22 +5,23 @@ import { map, catchError } from 'rxjs/operators'
 import { HttpClient } from '@angular/common/http';
 import { Request } from 'src/app/_models/request.model';
 import { RequestApproval, iScheduleList, Form, RequestApprovalView } from 'src/app/_models/form.model';
+import { loginParam } from 'src/app/_models/authen.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  request : RequestApproval[];
+  request: RequestApproval[];
 
   constructor(
-    private http : HttpClient
+    private http: HttpClient
   ) { }
 
-  public getRequests() : Observable<RequestApprovalView[]> {
+  public getRequests(): Observable<RequestApprovalView[]> {
     console.log('API URL : ', APIUrl.RequestReadAll);
     //return this.http.get<RequestApproval[]>( APIUrl.RequestReadAll );
-    return this.http.get( APIUrl.RequestReadAll).pipe(
+    return this.http.get(APIUrl.RequestReadAll).pipe(
       map((res) => {
         //this.request = 
         return res['records'];
@@ -28,7 +29,7 @@ export class ApiService {
     )
   }
 
-  public getScheduleByID(id : number) : Observable<iScheduleList[]> {
+  public getScheduleByID(id: number): Observable<iScheduleList[]> {
     const url = `${APIUrl.ScheduleReadByID}?rid=${id}`;
     console.log('API URL : ', url);
     return this.http.get(url).pipe(
@@ -38,7 +39,7 @@ export class ApiService {
     )
   }
 
-  public getRequestByID(id : number){
+  public getRequestByID(id: number) {
     const url = `${APIUrl.RequestReadByID}?rid=${id}`;
     console.log('API URL : ', url);
     return this.http.get(url).pipe(
@@ -48,7 +49,7 @@ export class ApiService {
     )
   }
 
-  public getRequestViewByID(id : number){
+  public getRequestViewByID(id: number) {
     const url = `${APIUrl.RequestReadViewByID}?rid=${id}`;
     console.log('API URL : ', url);
     return this.http.get(url).pipe(
@@ -57,7 +58,7 @@ export class ApiService {
       })
     )
   }
-  
+
   public createRequest(obj: RequestApproval) {
     console.log('API URL : ', APIUrl.RequestCreate);
     return this.http.post(APIUrl.RequestCreate, obj);
@@ -75,5 +76,15 @@ export class ApiService {
 
   public updateRequest(obj: Request) { }
 
-  public deleteRequest(id : number) {}
+  public deleteRequest(id: number) { }
+
+  public login(obj: loginParam) {
+    console.log('API URL : ', APIUrl.login);
+    console.log('API ------------------: ', this.http.post(APIUrl.login, obj));
+    return this.http.post(APIUrl.login, obj).pipe(
+      map(
+        (res) => { return res; }
+      )
+    );
+  }
 }
