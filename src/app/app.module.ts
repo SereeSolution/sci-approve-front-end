@@ -32,8 +32,14 @@ import { CryptoService } from './shared/services/crypto.service';
     BrowserAnimationsModule,
     TypeaheadModule.forRoot(),
     ModalModule.forRoot(),
-    ToastrModule.forRoot({      
-    }) // ToastrModule added
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      titleClass: 'text-white', 
+      messageClass : 'oufMessage'
+    }), // ToastrModule added
+
   ],
   providers: [
     BsModalRef,

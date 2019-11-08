@@ -20,21 +20,24 @@ export class RequestApproval {              //-----รายละเอีย�
   sendTo: string;
 
   //description ----
-  request_id: number  ;                // หมายเลขคำร้องในระบบ
-  org_name: string ;                  // หน่วยงานผู้เชิญ
+  request_id: number  ;              // หมายเลขคำร้องในระบบ
+  org_name: string ;                 // หน่วยงานผู้เชิญ
   address: string  ;                 // ที่อยู่
   province: string  ;                // จังหวัด
   tel: string  ;                     // เบอร์โทร
   topic: string;                     // หัวข้อบรรยาย, ชื่อผลงาน
   audience: string;                  // กลุ่มผู้เข้าฟัง -- Lecture
   coordinator: string ;              // ผู้ประสานงาน -- StudyTrip
-  coordinatorTel: string;           // เบอร์โทรผู้ประสานงาน -- StudyTrip
+  coordinatorTel: string;            // เบอร์โทรผู้ประสานงาน -- StudyTrip
   caretaker: string;                 // ผู้ดูแลนักศึกษา -- Supervision
   studentList: string  ;             // รายชื่อนักศึกษา -- Supervision
   studentYear: string  ;             // ชั้นปี -- Supervision
   studentDepartment: string  ;       // สาขาวิชา -- Supervision
   description: string    ;           // รายละเอียดเพิ่มเติม -- Supervision
-  remark: string;                  //หมายเหตุ
+  remark: string;                    //หมายเหตุ
+  status_name: string;               //ชื่อสถานะ 
+
+  //approve ----
   approvers_id: string;            //id ของผู้อนุมัติ
   approval_results: string;        //ผลการอนุมัติ
 }
@@ -65,6 +68,9 @@ export class RequestApprovalView {              //-----รายละเอี�
   description: string    ;           // รายละเอียดเพิ่มเติม -- Supervision
   remark: string;                  //หมายเหตุ
   type_name: string;
+  status_name: string;               //ชื่อสถานะ 
+  
+  //approve ----
   approvers_id: string;            //id ของผู้อนุมัติ
   approval_results: string;        //ผลการอนุมัติ
 }

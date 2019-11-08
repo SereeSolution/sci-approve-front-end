@@ -2,7 +2,14 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-balham.css";
 @import url("https://fonts.googleapis.com/css?family=Prompt&display=swap");
-/* @import '~ngx-toastr/toastr.css'; */
+/*@import 'node_modules/ngx-toastr/toastr.css';*/
+@import '~ngx-toastr/toastr';
+
+.oufMessage {
+  font-size: 12px;
+  color: snow;
+  text-shadow: black;
+}
 
 * {
   color: #636b6f;

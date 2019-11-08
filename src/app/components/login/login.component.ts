@@ -58,27 +58,26 @@ export class LoginComponent implements OnInit {
     this.apiServices.login(this.loginForm.value).toPromise()
       .then(result => {
         console.log('From Promise:', result);
-        if (result['status'] = true) {
+        console.log('   return status :', result['status']);
+        if (result['status'] === true) {
           user.name = result['displayname_th'];
           user.department = result['department'];
           user.role = 'STAFF';
           this.userProfileService.setUserProfile(user);
-          /*
-              this.userProfileService.setUserProfile(user);
-              switch (user.role) {
-                case 'STAFF': this.router.navigate(['/staff']);
-                  break;
-                case 'APPROVER': this.router.navigate(['/approval']);
-                  break;
-                default:
-                  this.router.navigate(['/staff']);
-              }
-          */
-          this.toastr.success('Login '+ result['message'] );
+          this.userProfileService.setUserProfile(user);
+          switch (user.role) {
+            case 'STAFF': this.router.navigate(['/staff']);
+              break;
+            case 'APPROVER': this.router.navigate(['/approval']);
+              break;
+            default:
+              this.router.navigate(['/staff']);
+          }
+          this.toastr.success('Login ' + result['message'], 'Authentication');
         } else {
           this.loginForm.reset();
           console.log('Invalid username or password .');
-          this.toastr.warning('Login '+ result['message']);
+          this.toastr.warning('Login ' + result['message'], 'Authentication');
         }
 
       })
@@ -87,110 +86,103 @@ export class LoginComponent implements OnInit {
           console.log('Error : ', err);
         }
       )
-
-
-    console.log("API LOGIN return -----> ");
-
-
-
-
   }
 
-  sendPostRequest() {
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Application-Key', 'NWM2MDE0OTY4YTZmOGRiZWU3NGQxNmU4ZmE1OTVkODBkMzRmNzQxMjc3MGMyY2QxNDBjZTEyYTg0NTYxYjllMg==')
-      .set('Access-Control-Allow-Origin', 'true')
-      .set('Access-Control-Allow-Credentials', 'true');
+  // sendPostRequest() {
+  //   const headers = new HttpHeaders()
+  //     .set('Content-Type', 'application/json')
+  //     .set('Application-Key', 'NWM2MDE0OTY4YTZmOGRiZWU3NGQxNmU4ZmE1OTVkODBkMzRmNzQxMjc3MGMyY2QxNDBjZTEyYTg0NTYxYjllMg==')
+  //     .set('Access-Control-Allow-Origin', 'true')
+  //     .set('Access-Control-Allow-Credentials', 'true');
 
 
-    const body = {
-      username: 'Kunmar',
-      password: '1103702197670',
-    }
+  //   const body = {
+  //     username: 'Kunmar',
+  //     password: '1103702197670',
+  //   }
 
-    return this.http
-      .post(this.apiURL, body, { headers: headers })
-      .subscribe(res => console.log("TEST LOGIN: ------> ", res));
-  }
+  //   return this.http
+  //     .post(this.apiURL, body, { headers: headers })
+  //     .subscribe(res => console.log("TEST LOGIN: ------> ", res));
+  // }
 
-  auth(login): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.http.post(this.apiURL,
-        { "UserName": login.UserName, "PassWord": login.PassWord },
-        {
-          headers: new HttpHeaders({
-            "Application-Key": API_Key,
-            "Content-Type": "application/json",
-
-
-            //"Accept": "*/*",
-            //"cache-control": "no-cache",
-            //'Access-Control-Allow-Origin': '*',
-            //'Access-Control-Allow-Credentials': 'true'
-
-          })
-        }
-      )
-        .subscribe((response: any) => {
-          alert(response);
-          resolve(response);
-        });
-    });
-  }
+  // auth(login): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     this.http.post(this.apiURL,
+  //       { "UserName": login.UserName, "PassWord": login.PassWord },
+  //       {
+  //         headers: new HttpHeaders({
+  //           "Application-Key": API_Key,
+  //           "Content-Type": "application/json",
 
 
-  testRequest() {
-    let apiURL = "https://spreadsheets.google.com/feeds/list/1Auu5Pj-zSbhiS55GDptBIb19osr7EStd9byKrobMKWE/1/public/values?alt=json";
-    console.log(apiURL);
-    return new Promise((resolve, reject) => {
-      this.http.get(apiURL)
-        .subscribe((response: any) => {
-          console.log(response);
-          resolve(response);
-        });
-    });
-  }
+  //           //"Accept": "*/*",
+  //           //"cache-control": "no-cache",
+  //           //'Access-Control-Allow-Origin': '*',
+  //           //'Access-Control-Allow-Credentials': 'true'
+
+  //         })
+  //       }
+  //     )
+  //       .subscribe((response: any) => {
+  //         alert(response);
+  //         resolve(response);
+  //       });
+  //   });
+  // }
 
 
-  login(data: loginParam) {
-    //let postData = "{\n\t\"UserName\":\"s_chal84\",\n\t\"PassWord\":\"3100900017671\"\n}";
-    console.log(data);
+  // testRequest() {
+  //   let apiURL = "https://spreadsheets.google.com/feeds/list/1Auu5Pj-zSbhiS55GDptBIb19osr7EStd9byKrobMKWE/1/public/values?alt=json";
+  //   console.log(apiURL);
+  //   return new Promise((resolve, reject) => {
+  //     this.http.get(apiURL)
+  //       .subscribe((response: any) => {
+  //         console.log(response);
+  //         resolve(response);
+  //       });
+  //   });
+  // }
 
-    return this.http.post(this.apiURL, data, {
-      headers: new HttpHeaders({
-        "Application-Key": API_Key,
-        "Content-Type": "application/json",
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true',
-        "mode": "no-cors"
-      })
-    })
-      .subscribe(
-        res => {
-          console.log(res);
-          return res;
-        },
-        err => {
-          console.log(err);
-          return err;
-        }
-      );
 
-    /*
-    return from( // wrap the fetch in a from if you need an rxjs Observable
-      fetch(
-        this.apiURL,
-        {
-          body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/json',
-           'Application-Key': 'MGRiOTVmNDUwZGQ4ODFhYTRkZTA3YWNhNzVhN2Y2NTA5ODU0NjJiYzFmZDRmZWVlNGYyYTQzMmIxMGVjZGM2ZA=='
-          },
-          method: 'POST'
-        }
-      )
-    );
-    */
-  }
+  // login(data: loginParam) {
+  //   //let postData = "{\n\t\"UserName\":\"s_chal84\",\n\t\"PassWord\":\"3100900017671\"\n}";
+  //   console.log(data);
+
+  //   return this.http.post(this.apiURL, data, {
+  //     headers: new HttpHeaders({
+  //       "Application-Key": API_Key,
+  //       "Content-Type": "application/json",
+  //       'Access-Control-Allow-Origin': '*',
+  //       'Access-Control-Allow-Credentials': 'true',
+  //       "mode": "no-cors"
+  //     })
+  //   })
+  //     .subscribe(
+  //       res => {
+  //         console.log(res);
+  //         return res;
+  //       },
+  //       err => {
+  //         console.log(err);
+  //         return err;
+  //       }
+  //     );
+
+
+  //   return from( // wrap the fetch in a from if you need an rxjs Observable
+  //     fetch(
+  //       this.apiURL,
+  //       {
+  //         body: JSON.stringify(data),
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //          'Application-Key': 'MGRiOTVmNDUwZGQ4ODFhYTRkZTA3YWNhNzVhN2Y2NTA5ODU0NjJiYzFmZDRmZWVlNGYyYTQzMmIxMGVjZGM2ZA=='
+  //         },
+  //         method: 'POST'
+  //       }
+  //     )
+  //   );
+
+  // }
 }
