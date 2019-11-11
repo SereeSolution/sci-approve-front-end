@@ -38,8 +38,10 @@ export class RequestApproval {              //-----รายละเอีย�
   status_name: string;               //ชื่อสถานะ 
 
   //approve ----
-  approvers_id: string;            //id ของผู้อนุมัติ
+  approver_name: string;            //ชื่อผู้อนุมัติ
+  approver_position: string;        //ตำแหน่งผู้อนุมัติ
   approval_results: string;        //ผลการอนุมัติ
+  approval_comment: string;        //ความคิดเห็น
 }
 
 
@@ -71,8 +73,10 @@ export class RequestApprovalView {              //-----รายละเอี�
   status_name: string;               //ชื่อสถานะ 
   
   //approve ----
-  approvers_id: string;            //id ของผู้อนุมัติ
+  approver_name: string;            //ชื่อผู้อนุมัติ
+  approver_position: string;        //ตำแหน่งผู้อนุมัติ
   approval_results: string;        //ผลการอนุมัติ
+  approval_comment: string;        //ความคิดเห็น
 }
 
 

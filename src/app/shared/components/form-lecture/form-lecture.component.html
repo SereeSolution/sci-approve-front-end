@@ -166,13 +166,13 @@
                                                 [(ngModel)]="r.org_name" [disabled]="!editable_flag"> -->
                                         <div class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input" id="defaultChecked"
-                                                name="defaultExampleRadios" checked>
+                                                name="defaultExampleRadios" [(ngModel)]="r.approval_results" checked>
                                             <label class="custom-control-label" for="defaultChecked">อนุมัติ</label>
                                         </div>
 
                                         <div class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input" id="defaultUnchecked"
-                                                name="defaultExampleRadios">
+                                                name="defaultExampleRadios" >
                                             <label class="custom-control-label"
                                                 for="defaultUnchecked">ไม่อนุมัติ</label>
                                         </div>
@@ -186,7 +186,7 @@
                                         <!-- <input type="text" class="form-control" placeholder="ที่อยู่"
                                             [(ngModel)]="r.address" [disabled]="!editable_flag"> -->
 
-                                        <textarea class="col col-sm-8 col-md-12" [(ngModel)]="r.studentList"></textarea>
+                                        <textarea class="col col-sm-8 col-md-12" [(ngModel)]="r.approval_comment"></textarea>
                                     </div>
                                 </div>
 

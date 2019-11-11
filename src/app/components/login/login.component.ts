@@ -51,11 +51,10 @@ export class LoginComponent implements OnInit {
   }
 
   OnSubmit() {
-    console.log('Form submit : ', this.loginForm.value);
+    //console.log('Form submit : ', this.loginForm.value);
     let user: Profile = new Profile();
-    this.commonService.getCommonData();
-    let res: loginResponse;
-    this.apiServices.login(this.loginForm.value).toPromise()
+    //this.commonService.getCommonData();
+    /*this.apiServices.login(this.loginForm.value).toPromise()
       .then(result => {
         console.log('From Promise:', result);
         console.log('   return status :', result['status']);
@@ -85,7 +84,24 @@ export class LoginComponent implements OnInit {
         err => {
           console.log('Error : ', err);
         }
-      )
+      )*/
+
+    user.name = 'Mr.Teat';
+    // user.department = 'Test-Staff';
+    // user.role = 'STAFF';
+
+    user.department = 'Test-Approver';
+    user.role = 'APPROVER';
+
+    this.userProfileService.setUserProfile(user);
+    switch (user.role) {
+      case 'STAFF': this.router.navigate(['/staff']);
+        break;
+      case 'APPROVER': this.router.navigate(['/approval']);
+        break;
+      default:
+        this.router.navigate(['/staff']);
+    }
   }
 
   // sendPostRequest() {
