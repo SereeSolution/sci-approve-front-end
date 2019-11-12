@@ -49,8 +49,8 @@ export class ApiService {
     )
   }
 
-  public getRequestViewByID(id: number) {
-    const url = `${APIUrl.RequestReadViewByID}?rid=${id}`;
+  public getRequestViewByID(data: string) {
+    const url = `${APIUrl.RequestReadViewByID}?rid=${data}`;
     console.log('API URL : ', url);
     return this.http.get(url).pipe(
       map((res) => {

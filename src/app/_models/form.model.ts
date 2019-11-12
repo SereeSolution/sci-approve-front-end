@@ -35,7 +35,7 @@ export class RequestApproval {              //-----รายละเอีย�
   studentDepartment: string  ;       // สาขาวิชา -- Supervision
   description: string    ;           // รายละเอียดเพิ่มเติม -- Supervision
   remark: string;                    //หมายเหตุ
-  status_name: string;               //ชื่อสถานะ 
+  //status_name: string;               //ชื่อสถานะ 
 
   //approve ----
   approver_name: string;            //ชื่อผู้อนุมัติ

@@ -64,7 +64,10 @@ export class ApprovalRequestApproveComponent implements OnInit {
   ) {
     this.userProfile = new Profile();
     this.userProfile = this.userProfileService.getUserProfile();
-    const requestObservable = this.ApiService.getRequestViewByID(Number.parseInt(this.userProfile.department));
+    this.userProfile.role = 'APPROVER'
+    this.userProfileService.setUserProfile(this.userProfile);
+    this.userProfile = this.userProfileService.getUserProfile();
+    const requestObservable = this.ApiService.getRequestViewByID(this.userProfile.department);
     requestObservable.subscribe(res => {
       this.requestData = res;
       this.getRequestData(res);

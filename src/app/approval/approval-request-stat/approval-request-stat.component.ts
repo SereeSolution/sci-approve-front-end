@@ -3,6 +3,8 @@ import { displayRequestList } from 'src/app/_models/display.model';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { Request } from 'src/app/_models/request.model';
 import { RequestApproval } from 'src/app/_models/form.model';
+import { Profile } from 'src/app/_models/profile.model';
+import { UserProfileService } from 'src/app/shared/services/userProfile.service';
 
 const DATA: displayRequestList[] = [
   // { request_code: 1, request_date: '2019-07-20', request_topic: 'ขออนุมัตไปราชการ', request_to: 'คณบดี', request_emp: 'อ.ทดสอบ', dep_name: 'สาขาวิชาคณิตศาสตร์', status: 'คณบดีอนุมัติ', approve_date: new Date('2019-07-21'), file: '<i class="fa fa-file-pdf-o" aria-hidden="true"></i>'},
@@ -40,15 +42,21 @@ export class ApprovalRequestStatComponent implements OnInit {
 
   rowData: displayRequestList[] = [];
   requestData: RequestApproval[] = [];
+  userProfile: Profile;
 
   constructor(
-    private ApiService: ApiService
+    private ApiService: ApiService,
+    private userProfileService: UserProfileService
   ) { }
 
   ngOnInit() {
     this.initMockData();
     this.initData();
     //this.defaultColDef = { resizable: true, sortable : true, suppressFilter: true};
+    this.userProfile = new Profile();
+    this.userProfile = this.userProfileService.getUserProfile();
+    this.userProfile.role = 'APPROVER'
+    this.userProfileService.setUserProfile(this.userProfile);
   }
 
   initMockData() {

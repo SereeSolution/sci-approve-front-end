@@ -166,16 +166,27 @@
                                                 [(ngModel)]="r.org_name" [disabled]="!editable_flag"> -->
                                         <div class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input" id="defaultChecked"
-                                                name="defaultExampleRadios" [(ngModel)]="r.approval_results" checked>
+                                                name="defaultExampleRadios" value = "อนุมัติ" [(ngModel)]="r.approval_results" checked>
                                             <label class="custom-control-label" for="defaultChecked">อนุมัติ</label>
                                         </div>
 
                                         <div class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input" id="defaultUnchecked"
-                                                name="defaultExampleRadios" >
+                                                name="defaultExampleRadios" value = "ไม่อนุมัติ" [(ngModel)]="r.approval_results">
                                             <label class="custom-control-label"
                                                 for="defaultUnchecked">ไม่อนุมัติ</label>
                                         </div>
+
+                                        <!-- <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" value="1" id="s" name="s" [(ngModel)]="r.approval_results" >
+                                            <label class="custom-control-label" for="defaultChecked">อนุมัติ</label>
+                                        </div>
+
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" value="2" name="s" id="s" [(ngModel)]="r.approval_results" >
+                                            <label class="custom-control-label"
+                                                for="defaultUnchecked">ไม่อนุมัติ</label>
+                                        </div> -->
 
                                     </div>
                                 </div>

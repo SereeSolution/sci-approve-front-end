@@ -138,6 +138,7 @@ export class FormLectureComponent implements OnInit {
     this.form = new Form();
     //this.h.request_type = 1;
     this.r.request_type = 1;
+    this.r.approval_results = '-';
 
     if (this.requestID) {
       console.log('Request ID : ', this.requestID);
@@ -192,6 +193,7 @@ export class FormLectureComponent implements OnInit {
     });
 
     //this.form.headers = this.h;
+    console.log(this.r);
     this.form.description = this.r;
     this.form.schedule = this.rowData;
 
